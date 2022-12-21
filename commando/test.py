@@ -1,6 +1,6 @@
 from discord.ext import commands
 import discord
-from progress.item import cursed
+from progress.item import fetchvalue
 
 class Test(commands.Cog):
     def __init__(self, bot):
@@ -9,7 +9,7 @@ class Test(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def test(self, ctx):
-        var = cursed('name', 'user', 1234)
+        var = fetchvalue('name', 'user', 1234)
         print(var)
     
 async def setup(bot):
