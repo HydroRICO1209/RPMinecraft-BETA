@@ -15,16 +15,12 @@ class Start(commands.Cog):
         created = await self.bot.db.fetch('SELECT * FROM stats WHERE playerid = $1', userid)
         
         if created == []:
-            try:
-                #armors
-                await self.bot.db.execute('''
+
+            #armors
+            await self.bot.db.execute('''
 INSERT INTO armors (playerid, helmet, chestplate, leggings, boots, sword)
 VALUES ($1, 0, 0, 0, 0, 0)
 ''', userid)
-            except Exception as e:
-                print(e)
-                await ctx.send('Your account already exist')
-                pass
             
             try:
                 #farm
