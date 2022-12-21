@@ -22,6 +22,7 @@ INSERT INTO armors (playerid, helmet, chestplate, leggings, boots, sword)
 VALUES ($1, 0, 0, 0, 0, 0)
 ''', userid)
             except:
+                raise error
                 await ctx.send('Your account already exist')
                 pass
             
