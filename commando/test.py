@@ -1,6 +1,6 @@
 from discord.ext import commands
 import discord
-from progress.item import fetchvalue
+from progress.item.Item import fetchvalue
 
 class Test(commands.Cog):
     def __init__(self, bot):
