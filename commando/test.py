@@ -8,9 +8,17 @@ class Test(commands.Cog):
     
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.user)
-    async def test(self, ctx):
-        var = fetchvalue('name', 'user', 1234)
-        print(var)
-    
+    async def test(self, ctx, *, arg):
+        try:
+            arglists = arg.split(" ")
+            arglen = len(arglists)
+            if arglen == 3:
+                var = fetchvalue(arglists[0], arglists[1], int(arglists[2]))
+                print(var)
+            else:
+                await ctx.send(f'arglen is only {arglen}, it should be 3 dumb')
+            
+        except:
+            raise error
 async def setup(bot):
     await bot.add_cog(Test(bot))
