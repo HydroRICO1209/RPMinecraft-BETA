@@ -1,8 +1,5 @@
 from discord.ext import commands
 import discord
-from progress.itemlist import itemss
-from progress.itemlist import armors
-from progress.itemlist import statss
 from progress.my_emote import *
 
 class Start(commands.Cog):
@@ -12,37 +9,50 @@ class Start(commands.Cog):
     @commands.command(aliases =['start'])
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def update(self, ctx):
-        userid = str(ctx.author.id)
+        username = ctx.author.name
+        userid = ctx.author.id
         my_emote = My_emote(ctx)
-    
-        for key, value in itemss.items():
-            for item in value:
-                if f'{userid}{item}' not in db:
-                    db[f'{userid}{item}'] = 0
-                else:
-                    continue
-                    
-        for armor in armors:  
-            if f'{userid}{armor}' not in db:
-                db[f'{userid}{armor}'] = 0
-            else:  
-                continue
-                
-        for stats in statss:
-            if f'{userid}{stats}' not in db:
-                if stats == 'xp':
-                    db[f'{userid}{stats}'] = 0
-                elif stats == 'hp':
-                    db[f'{userid}{stats}'] = 100
-                else:
-                    db[f'{userid}{stats}'] = 1
-            else:
-                continue
+        created = await self.bot.db.fetch('SELECT * FROM stats WHERE playerid = $1', userid)
+        
+        if created == []:
+            #armors
+            await self.bot.db.execute('''
+INSERT INTO armors (playerid, helmet, chestplate, leggings, boots, sword)
+VALUES ($1, 0, 0, 0, 0, 0)
+''', userid)
+            
+            #farm
+            await self.bot.db.execute('''
+INSERT INTO table (playerid, small_sapling, medium_sapling, large_sapling, apple, wheat_seeds, wheat, potato, poisonous_potato, carrot, beetroot_seeds, beetroot, cleansed_water_bucket. cleansed_dirt)
+VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+''', userid)
+            
+            #farmlist
+            await self.bot.db.execute('''
+INSERT INTO table (playerid, slot1, slot1time, slot2, slot2time, slot3, slot3time)
+VALUES ($1, 'locked', 999999, 'locked', 999999, 'locked', 999999)
+''', userid)
+            
+            #misc
+            await self.bot.db.execute('''
+INSERT INTO table (playerid, emerald, cobble, coal, iron_ingot, diamond, gold_ingot, netherite_scrap, netherite_ingot, redstone, soul_sand, wood, bed, common_chest, rare_chest	super_rare_chest, epic_chest, mythic_chest, legendary_chest)
+VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+''', userid)
+            
+            #mobdrop
+            await self.bot.db.execute('''
+INSERT INTO table (playerid, pogchop, cooked_pogchop, beef, steak, wool, map_scrap, map, wither_skull, blaze_rod, blaze_powder, ender_pearl, eye_of_ender)
+VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+''', userid)
 
-        db[f'{userid}farmlist'] = [[None,0],[]]
+            #stats
+            await self.bot.db.execute('''
+INSERT INTO table (playerid, hp, level, highest_area, atk, defend, xp, area, vote_count)
+VALUES ($1, 100, 1, 1, 1, 1, 1, 0, 1, 0)
+''', userid)
     
         embed = discord.Embed(
-            title = f'**Welcome to RPMinecraft, {ctx.author.name}**',
+            title = f'**Welcome to RPMinecraft, {username}**',
             description = f'''
     This is a minecraft based rpg bot. You need to **hunt for mobdrops**, **defeat bosses** to get to **higher areas**. There is **14 areas** in total.
     
