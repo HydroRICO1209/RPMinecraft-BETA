@@ -15,42 +15,66 @@ class Start(commands.Cog):
         created = await self.bot.db.fetch('SELECT * FROM stats WHERE playerid = $1', userid)
         
         if created == []:
-            #armors
-            await self.bot.db.execute('''
+            try:
+                #armors
+                await self.bot.db.execute('''
 INSERT INTO armors (playerid, helmet, chestplate, leggings, boots, sword)
 VALUES ($1, 0, 0, 0, 0, 0)
 ''', userid)
+            except UniqueViolationError:
+                await ctx.send('Your account already exist')
+                pass
             
-            #farm
-            await self.bot.db.execute('''
+            try:
+                #farm
+                await self.bot.db.execute('''
 INSERT INTO farm (playerid, small_sapling, medium_sapling, large_sapling, apple, wheat_seeds, wheat, potato, poisonous_potato, carrot, beetroot_seeds, beetroot, cleansed_water_bucket. cleansed_dirt)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 ''', userid)
-            
-            #farmlist
-            await self.bot.db.execute('''
+            except UniqueViolationError:
+                await ctx.send('Your account already exist')
+                pass
+                
+            try:
+                #farmlist
+                await self.bot.db.execute('''
 INSERT INTO farmlist (playerid, slot1, slot1time, slot2, slot2time, slot3, slot3time)
 VALUES ($1, 'locked', 999999, 'locked', 999999, 'locked', 999999)
 ''', userid)
-            
-            #misc
-            await self.bot.db.execute('''
+            except UniqueViolationError:
+                await ctx.send('Your account already exist')
+                pass
+
+            try:
+                #misc
+                await self.bot.db.execute('''
 INSERT INTO misc (playerid, emerald, cobble, coal, iron_ingot, diamond, gold_ingot, netherite_scrap, netherite_ingot, redstone, soul_sand, wood, bed, common_chest, rare_chest	super_rare_chest, epic_chest, mythic_chest, legendary_chest)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 ''', userid)
+            except UniqueViolationError:
+                await ctx.send('Your account already exist')
+                pass
             
-            #mobdrop
-            await self.bot.db.execute('''
+            try:
+                #mobdrop
+                await self.bot.db.execute('''
 INSERT INTO mobdrop (playerid, pogchop, cooked_pogchop, beef, steak, wool, map_scrap, map, wither_skull, blaze_rod, blaze_powder, ender_pearl, eye_of_ender)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 ''', userid)
-
-            #stats
-            await self.bot.db.execute('''
+            except UniqueViolationError:
+                await ctx.send('Your account already exist')
+                pass
+            
+            try:
+                #stats
+                await self.bot.db.execute('''
 INSERT INTO stats (playerid, hp, level, highest_area, atk, defend, xp, area, vote_count)
 VALUES ($1, 100, 1, 1, 1, 1, 1, 0, 1, 0)
 ''', userid)
-    
+            except UniqueViolationError:
+                await ctx.send('Your account already exist')
+                pass
+            
         embed = discord.Embed(
             title = f'**Welcome to RPMinecraft, {username}**',
             description = f'''
