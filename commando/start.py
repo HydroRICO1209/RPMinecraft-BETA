@@ -23,31 +23,31 @@ VALUES ($1, 0, 0, 0, 0, 0)
             
             #farm
             await self.bot.db.execute('''
-INSERT INTO table (playerid, small_sapling, medium_sapling, large_sapling, apple, wheat_seeds, wheat, potato, poisonous_potato, carrot, beetroot_seeds, beetroot, cleansed_water_bucket. cleansed_dirt)
+INSERT INTO farm (playerid, small_sapling, medium_sapling, large_sapling, apple, wheat_seeds, wheat, potato, poisonous_potato, carrot, beetroot_seeds, beetroot, cleansed_water_bucket. cleansed_dirt)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 ''', userid)
             
             #farmlist
             await self.bot.db.execute('''
-INSERT INTO table (playerid, slot1, slot1time, slot2, slot2time, slot3, slot3time)
+INSERT INTO farmlist (playerid, slot1, slot1time, slot2, slot2time, slot3, slot3time)
 VALUES ($1, 'locked', 999999, 'locked', 999999, 'locked', 999999)
 ''', userid)
             
             #misc
             await self.bot.db.execute('''
-INSERT INTO table (playerid, emerald, cobble, coal, iron_ingot, diamond, gold_ingot, netherite_scrap, netherite_ingot, redstone, soul_sand, wood, bed, common_chest, rare_chest	super_rare_chest, epic_chest, mythic_chest, legendary_chest)
+INSERT INTO misc (playerid, emerald, cobble, coal, iron_ingot, diamond, gold_ingot, netherite_scrap, netherite_ingot, redstone, soul_sand, wood, bed, common_chest, rare_chest	super_rare_chest, epic_chest, mythic_chest, legendary_chest)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 ''', userid)
             
             #mobdrop
             await self.bot.db.execute('''
-INSERT INTO table (playerid, pogchop, cooked_pogchop, beef, steak, wool, map_scrap, map, wither_skull, blaze_rod, blaze_powder, ender_pearl, eye_of_ender)
+INSERT INTO mobdrop (playerid, pogchop, cooked_pogchop, beef, steak, wool, map_scrap, map, wither_skull, blaze_rod, blaze_powder, ender_pearl, eye_of_ender)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 ''', userid)
 
             #stats
             await self.bot.db.execute('''
-INSERT INTO table (playerid, hp, level, highest_area, atk, defend, xp, area, vote_count)
+INSERT INTO stats (playerid, hp, level, highest_area, atk, defend, xp, area, vote_count)
 VALUES ($1, 100, 1, 1, 1, 1, 1, 0, 1, 0)
 ''', userid)
     
