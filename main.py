@@ -149,6 +149,10 @@ Try again in another **{hrcd}h {rmincd}m {rseccd}s**
             await ctx.send(embed=embed)
         else:
             raise error
+    elif isinstance(error, UnqiueViolationError):
+        await ctx.send('Account has already been created')
+        pass
+        
     else:
         raise error
 
