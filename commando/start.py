@@ -51,7 +51,7 @@ VALUES ($1, 'locked', 999999, 'locked', 999999, 'locked', 999999)
             try:
                 #misc
                 await self.bot.db.execute('''
-INSERT INTO misc (playerid, emerald, cobble, coal, iron_ingot, diamond, gold_ingot, netherite_scrap, netherite_ingot, redstone, soul_sand, wood, bed, common_chest, rare_chest	super_rare_chest, epic_chest, mythic_chest, legendary_chest)
+INSERT INTO misc (playerid, emerald, cobble, coal, iron_ingot, diamond, gold_ingot, netherite_scrap, netherite_ingot, redstone, soul_sand, wood, bed, common_chest, rare_chest,	super_rare_chest, epic_chest, mythic_chest, legendary_chest)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 ''', userid)
             except Exception as e:
