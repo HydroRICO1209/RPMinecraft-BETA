@@ -20,36 +20,42 @@ class Start(commands.Cog):
             await self.bot.db.execute('''
 INSERT INTO armors (playerid, helmet, chestplate, leggings, boots, sword)
 VALUES ($1, 0, 0, 0, 0, 0)
+ON CONFLICT DO NOTHING
 ''', userid)
             
             #farm
             await self.bot.db.execute('''
-INSERT INTO farm (playerid, small_sapling, medium_sapling, large_sapling, apple, wheat_seeds, wheat, potato, poisonous_potato, carrot, beetroot_seeds, beetroot, cleansed_water_bucket. cleansed_dirt)
+INSERT INTO farm (playerid, small_sapling, medium_sapling, large_sapling, apple, wheat_seeds, wheat, potato, poisonous_potato, carrot, beetroot_seeds, beetroot, cleansed_water_bucket, cleansed_dirt)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+ON CONFLICT DO NOTHING
 ''', userid)
 
             #farmlist
             await self.bot.db.execute('''
 INSERT INTO farmlist (playerid, slot1, slot1time, slot2, slot2time, slot3, slot3time)
 VALUES ($1, 'locked', 999999, 'locked', 999999, 'locked', 999999)
+ON CONFLICT DO NOTHING
 ''', userid)
 
             #misc
             await self.bot.db.execute('''
 INSERT INTO misc (playerid, emerald, cobble, coal, iron_ingot, diamond, gold_ingot, netherite_scrap, netherite_ingot, redstone, soul_sand, wood, bed, common_chest, rare_chest,	super_rare_chest, epic_chest, mythic_chest, legendary_chest)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+ON CONFLICT DO NOTHING
 ''', userid)
             
             #mobdrop
             await self.bot.db.execute('''
 INSERT INTO mobdrop (playerid, pogchop, cooked_pogchop, beef, steak, wool, map_scrap, map, wither_skull, blaze_rod, blaze_powder, ender_pearl, eye_of_ender)
 VALUES ($1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+ON CONFLICT DO NOTHING
 ''', userid)
             
             #stats
             await self.bot.db.execute('''
 INSERT INTO stats (playerid, hp, level, highest_area, atk, defend, xp, area, vote_count)
-VALUES ($1, 100, 1, 1, 1, 1, 1, 0, 1, 0)
+VALUES ($1, 100, 1, 1, 1, 1, 0, 1, 0)
+ON CONFLICT DO NOTHING
 ''', userid)
             
         embed = discord.Embed(

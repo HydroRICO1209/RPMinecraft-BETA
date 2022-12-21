@@ -148,11 +148,7 @@ Try again in another **{hrcd}h {rmincd}m {rseccd}s**
             icon_url = ctx.author.avatar.url)
             await ctx.send(embed=embed)
         else:
-            raise error
-    elif isinstance(error, UnqiueViolationError):
-        await ctx.send('Account has already been created')
-        pass
-        
+            raise error        
     else:
         raise error
 
