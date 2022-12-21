@@ -4,7 +4,6 @@ from progress.itemlist import itemss
 from progress.itemlist import armors
 from progress.itemlist import statss
 from progress.my_emote import *
-from replit import db
 
 class Start(commands.Cog):
     def __init__(self, bot):

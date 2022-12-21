@@ -1,7 +1,5 @@
 import discord, os, random, asyncio, discord.ext.commands
 from discord.ext import commands
-from replit import db
-from z.keep_alive import *
 from progress.my_emote import *
 
 intents = discord.Intents.all()
@@ -14,6 +12,12 @@ bot = commands.Bot(command_prefix = prefixxx, case_insensitive=True, activity=di
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
 bot.remove_command('help')
+
+discord.utils.setup_logging()
+@bot.event
+async def setup_hook() -> None:
+    bot.db: asyncpg.Pool = await asyncpg.create_pool(os.getenv('DBURL'))
+
 
 @bot.event
 async def on_message(message) :
@@ -147,8 +151,6 @@ Try again in another **{hrcd}h {rmincd}m {rseccd}s**
             raise error
     else:
         raise error
-
-keep_alive()
 
 async def main():
     async with bot:

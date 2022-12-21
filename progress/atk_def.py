@@ -1,5 +1,3 @@
-from replit import db
-
 def atk_def(ctx):
     userid = str(ctx.author.id)
     helmet = db[userid + 'helmet']

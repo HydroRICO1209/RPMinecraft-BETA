@@ -1,6 +1,5 @@
 from discord.ext import commands
 import discord
-from replit import db
 
 class Daily(commands.Cog):
     def __init__(self, bot):

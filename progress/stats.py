@@ -1,5 +1,3 @@
-from replit import db
-
 class Stats():
     def __init__(self, ctx):
         self.userid = str(ctx.author.id)

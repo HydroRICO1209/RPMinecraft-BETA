@@ -46,8 +46,19 @@ itemss = {
         'beetroot_seeds',
         'beetroot',
         'cleansed_water_bucket',
-        'cleansed_dirt',
-        'farmlist'
+        'cleansed_dirt'
+    ],
+    'farmlist':[
+        '1',
+        '1time',
+        '2',
+        '2time',
+        '3',
+        '3time',
+        '4',
+        '4time',
+        '5',
+        '5time'
     ],
     'illegal':[
         'bedrock',
@@ -67,10 +78,10 @@ armors = [
 statss = [
     'hp',
     'level',
-    'highestArea',
+    'highest_area',
     'atk',
     'defend',
     'xp',
     'area',
-    'voteCount'
+    'vote_count'
 ]
