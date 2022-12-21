@@ -1,4 +1,4 @@
-import discord, os, random, asyncio, discord.ext.commands
+import discord, os, random, asyncio, discord.ext.commands, asyncpg
 from discord.ext import commands
 from progress.my_emote import *
 
