@@ -18,7 +18,6 @@ discord.utils.setup_logging()
 async def setup_hook() -> None:
     bot.db: asyncpg.Pool = await asyncpg.create_pool(os.getenv('DBURL'))
 
-
 @bot.event
 async def on_message(message) :
     guild = bot.get_guild(905428951432843304) or bot.fetch_guild(905428951432843304)
@@ -55,8 +54,7 @@ async def on_message(message) :
 #######################COMMANDS#######################
 ######################################################  
 
-async def fetchvalue(item, tablename, userid):
-    return (await bot.db.fetch('SELECT $1 FROM $2 WHERE userid = $3', item, tablename, userid))[0][item]
+
 
 @bot.event
 async def on_command_error(ctx, error):
