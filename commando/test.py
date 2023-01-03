@@ -12,7 +12,7 @@ class Test(commands.Cog):
         arglists = arg.split(" ")
         arglen = len(arglists)
         if arglen == 3:
-            #
+            #item, tablename, userid
             var = await fetchvalue(arglists[0], arglists[1], int(arglists[2]))
             print(var)
         else:
