@@ -9,7 +9,7 @@ class Test(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def test(self, ctx, *, arg):
-        dbfunc = progress.item.DatabaseFunc()
+        dbfunc = progress.item.DatabaseFunc(bot)
         arglists = arg.split(" ")
         arglen = len(arglists)
         if arglen == 3:
