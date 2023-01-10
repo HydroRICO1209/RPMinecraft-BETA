@@ -6,6 +6,9 @@ class Database:
         self.bot = bot
 
     async def fetchvalue(self, item, tablename, userid):
+        print(item)
+        print(tablename)
+        print(userid)
         return (await self.bot.db.fetch('SELECT $1 FROM $2 WHERE userid = $3', item, tablename, userid))[0][item]
 
 #async def changevalue(item, tablename, userid, changes):
