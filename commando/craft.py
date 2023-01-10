@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 from progress.stats import *
-from progress.item import *
+#from progress.item import *
 from progress.my_emote import *
 from progress.atk_def import *
 
@@ -14,7 +14,7 @@ class Craft(commands.Cog):
     async def craft(self, ctx, *, arg: str):
         try:
             stats = Stats(ctx)
-            item = Item(ctx)
+            item = None
             e = My_emote(ctx)
             if arg == '1':
                 embed = discord.Embed(
