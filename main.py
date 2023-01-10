@@ -1,6 +1,7 @@
 import discord, os, random, asyncio, discord.ext.commands, asyncpg
 from discord.ext import commands
 from progress.my_emote import *
+from database import Database
 
 intents = discord.Intents.all()
 intents.members = True
@@ -17,6 +18,7 @@ discord.utils.setup_logging()
 @bot.event
 async def setup_hook() -> None:
     bot.db: asyncpg.Pool = await asyncpg.create_pool(os.getenv('DATABASE_URL'))
+    bot.database_handler = Database(bot)
 
 @bot.event
 async def on_message(message) :

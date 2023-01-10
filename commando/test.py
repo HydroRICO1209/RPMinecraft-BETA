@@ -1,6 +1,6 @@
 from discord.ext import commands
 import discord
-import progress.item
+import progress.database
 
 class Test(commands.Cog):
     def __init__(self, bot):
@@ -9,7 +9,7 @@ class Test(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def test(self, ctx, *, arg):
-        dbfunc = progress.item.DatabaseFunc(bot)
+        dbfunc = progress.database.Database(bot)
         arglists = arg.split(" ")
         arglen = len(arglists)
         if arglen == 3:
