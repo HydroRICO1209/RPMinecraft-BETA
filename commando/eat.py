@@ -1,6 +1,5 @@
 from discord.ext import commands
 import discord
-from progress.item import *
 from progress.stats import *
 
 class Eat(commands.Cog):
@@ -11,7 +10,7 @@ class Eat(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def eat(self, ctx, arg:str):
         try:
-            item = Item(ctx)
+            item = None
             stats = Stats(ctx)
             if stats.hp >= 100:
                 await ctx.send(f'**{ctx.author.name}**, you want me to force feed you?')
