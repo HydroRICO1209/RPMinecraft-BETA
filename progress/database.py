@@ -6,8 +6,8 @@ class Database:
         self.bot = bot
 
     async def fetchvalue(self, item, tablename, userid):
-        string1 = f'SELECT $1 FROM {tablename} WHERE playerid = $2'
-        return (await self.bot.db.fetchval(string1, item, userid))
+        string1 = f'SELECT {item} FROM {tablename} WHERE playerid = $1'
+        return (await self.bot.db.fetchval(string1, userid))
 
 #async def changevalue(item, tablename, userid, changes):
 #   value = (await bot.db.fetch('SELECT $1 FROM $2 WHERE userid = $3', item, tablename, userid))[0][item]
