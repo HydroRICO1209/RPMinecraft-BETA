@@ -32,8 +32,8 @@ ON CONFLICT DO NOTHING
 
             #farmlist
             await self.bot.db.execute('''
-INSERT INTO farmlist (playerid, slot1, slot1time, slot2, slot2time, slot3, slot3time)
-VALUES ($1, 'locked', 999999, 'locked', 999999, 'locked', 999999)
+INSERT INTO farmlist (playerid, totalslot, slot1, slot1time, slot2, slot2time, slot3, slot3time)
+VALUES ($1, 0, 0, 999999, 0, 999999, 0, 999999)
 ON CONFLICT DO NOTHING
 ''', userid)
 
