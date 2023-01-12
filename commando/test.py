@@ -27,8 +27,8 @@ class Test(commands.Cog):
         arglen = len(arglists)
         if arglen == 4:
             #item, tablename, userid, newvalue
-            value = await dbfunc.updatevalue(arglists[0], arglists[1], arglists[2], arglists[3])
-            await ctx.send(value)
+            await dbfunc.updatevalue(arglists[0], arglists[1], arglists[2], arglists[3])
+            await ctx.send(f'{arglists[0]} is now {arglists[3]}')
         else:
             await ctx.send(f'arglen is only {arglen}, it should be 4 dumb')
             
