@@ -17,6 +17,6 @@ class Database:
         update_query = f'UPDATE {tablename} SET {item} = $1 WHERE playerid = $2'
         await self.bot.db.execute(update_query, int(newvalue), int(userid))
         
-    async def updateBoolValue(self, item, tablename, userid, Truth):
+    async def updateStrValue(self, item, tablename, userid, newvalue):
         update_query = f'UPDATE {tablename} SET {item} = $1 WHERE playerid = $2'
-        await self.bot.db.execute(update_query, bool(Truth), int(userid))
+        await self.bot.db.execute(update_query, newvalue, int(userid))
