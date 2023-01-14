@@ -17,7 +17,6 @@ class Open(commands.Cog):
             dbfunc = self.bot.database_handler
             userid = ctx.author.id
             username = ctx.author.name
-            
             num1 = random.randint(0, 100) #loottype
             num2 = random.randint(0, 100) #lootnum
             
@@ -81,7 +80,7 @@ class Open(commands.Cog):
             elif arg in ['r', 'rare chest']:
                 lootlist = f'**{username}** opened a rare chest and got:'
                 if misc.rare_chest > 0: #have the chest
-                    db[misc.userid + 'rare_chest'] -= 1
+                    await dbfunc.updateIntValue('rare_chest', 'misc', userid, -1)
                     common = ['pogchop', 'beef', 'wool', 'coal']
                     for loot in common:
                         num1 = random.randint(0, 100)
@@ -127,7 +126,7 @@ class Open(commands.Cog):
             elif arg in ['s',  'super rare chest']:
                 lootlist = f'**{username}** opened a super rare chest and got:'
                 if misc.super_rare_chest > 0: #have the chest
-                    db[misc.userid + 'super_rare_chest'] = misc.super_rare_chest - 1
+                    await dbfunc.updateIntValue('super_rare_chest', 'misc', userid, -1)
                     common = ['pogchop', 'beef', 'wool', 'coal', 'iron_ingot']
                     for loot in common:
                         num1 = random.randint(0, 100)
@@ -230,7 +229,7 @@ class Open(commands.Cog):
             elif arg in ['m', 'mythic chest']:
                 if misc.mythic_chest > 0: #have the chest
                     lootlist = f'**{username}** opened a mythic chest and got:'
-                    db[misc.userid + 'mythic_chest'] = misc.mythic_chest - 1
+                    await dbfunc.updateIntValue('mythic_chest', 'misc', userid, -1)
                     common = ['beef', 'wool', 'blaze_rod', 'diamond']
                     for loot in common:
                         num1 = random.randint(0, 100)
@@ -291,7 +290,7 @@ class Open(commands.Cog):
             elif arg in ['l', 'legendary chest']:
                 lootlist = f'**{username}** opened a legendary chest and got:'
                 if misc.legendary_chest > 0: #have the chest
-                    db[misc.userid + 'legendary_chest'] = misc.legendary_chest - 1
+                    await dbfunc.updateIntValue('legendary_chest', 'misc', userid, -1)
                     mobdrop = ['pogchop', 'beef', 'wool', 'map_scrap', 'wither_skull', 'blaze_rod', 'ender_pearl'] #3 random mobdrop x20
                     for _ in range(3):
                         num1 = random.randint(0, 6)
@@ -310,10 +309,10 @@ class Open(commands.Cog):
                         loot = ore[num1]
                         my_emote = discord.utils.get(bot.emojis, name = loot)
                         if loot in ['netherite_scrap', 'soul_sand']:
-                            db[f'{misc.userid}{loot}'] += 2
+                            await dbfunc.updateIntValue(loot, 'misc', userid, 2)
                             lootlist += f'\n{my_emote}{loot} x2'
                         else:
-                            db[f'{misc.userid}{loot}'] += 20
+                            await dbfunc.updateIntValue(loot, 'misc', userid, 20)
                             lootlist += f'\n{my_emote}{loot} x20'
 
                     rare = ['legendary_chest']
@@ -321,7 +320,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         if num1 <= 69: #69%
                             my_emote = discord.utils.get(bot.emojis, name = loot)
-                            db[f'{misc.userid}{loot}'] += 1
+                            await dbfunc.updateIntValue('legendary_chest', 'misc', userid, 1)
                             lootlist += f'\n{my_emote}{loot} x1'
 
                     await ctx.send(lootlist)

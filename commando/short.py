@@ -34,59 +34,47 @@ You can vote for RPMinecraft and get the following rewards (you can vote every 1
 """, 
             color = discord.Color.blue())
         await ctx.send(embed=embed)
-
-    @commands.command()
-    async def hydrorico(self, ctx, arg: int): #delete account
-        userid = str(ctx.author.id)
-        if userid != '757508305256972338':
-            await ctx.send('**ACCESS DENIED**')
-        else:
-            matches = db.prefix(arg)
-            for match in matches:
-                del db[match]
-            await ctx.send(f'**{matches}** deleted from db')
     
     @commands.command()
-    async def debug(self, ctx, arg:str): #check database value
+    async def hydrorico_check(self, ctx, arg:str): #check database value
         try:
-            userid = str(ctx.author.id)
-            if userid != '757508305256972338':
+            userid = ctx.author.id
+            if userid is not 757508305256972338:
                 await ctx.send('**ACCESS DENIED**')
             else:
-                value = db[arg]
-                await ctx.send(f'**{arg}** = **{value}**')
+                dbfunc = self.bot.database_handler
+                arglists = arg.split(" ")
+                arglen = len(arglists)
+                if arglen == 3:
+                    #item, tablename, userid
+                    value = await dbfunc.fetchValue(arglists[0], arglists[1], arglists[2])
+                    await ctx.send(value)
+                else:
+                    await ctx.send(f'arglen is only {arglen}, it should be 3 dumb')
         except KeyError:
             await ctx.send(f'**{arg}** is not in database')
     
     @commands.command()
-    async def server(self, ctx): #number of server
-        number = 0
-        msg = '```'
-        msg2 = '```'
-        userid = str(ctx.author.id)
-        if userid != '757508305256972338':
+    async def hydrorico_server_list(self, ctx): #number of server
+        userid = ctx.author.id
+        if userid is not 757508305256972338:
             await ctx.send('**ACCESS DENIED**')
         else:
             for gu in bot.guilds:
-                if len(msg) < 1950:
-                    number += 1
-                    msg += f'{number}) {gu.name}: {gu.owner}\n'
-        
-        msg += '```'
-        await ctx.send(msg)
+                print(f'{number}) {gu.name}: {gu.owner}')
 
     @commands.command
     async def hack(self, ctx, arg:str): #hack item
         try:
-            userid = str(ctx.author.id)
-            if userid != '757508305256972338':
-                await ctx.send('**ACCESS DENIED**')
-            else:
-                db[arg] += 1
-                value = db[arg]
-                await ctx.send(f'**{arg}** = {value}')
+            dbfunc = self.bot.database_handler
+            arglists = arg.split(" ")
+            arglen = len(arglists)
+            if arglen == 4:
+                #item, tablename, userid, newvalue
+                await dbfunc.setIntValue(arglists[0], arglists[1], arglists[2], arglists[3])
+                await ctx.send(f'{arglists[0]} is now {arglists[3]}')
         except KeyError:
-            await ctx.send(f'**{arg}** is not in database')
+            await ctx.send(f'**{arglists[0]}** is not in database')
 
 async def setup(bot):
     await bot.add_cog(Others(bot))
