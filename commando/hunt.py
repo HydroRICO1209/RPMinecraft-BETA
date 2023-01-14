@@ -2,6 +2,7 @@ from discord.ext import commands
 import discord, random
 from progress.my_emote import *
 from progress.stats import *
+from progress.mobdrop import *
 
 class Hunt(commands.Cog):
     def __init__(self, bot): 
@@ -13,6 +14,11 @@ class Hunt(commands.Cog):
         try:
             emote = My_emote(ctx)
             stats = Stats(ctx)
+            mobdrop = Mobdrop(ctx)
+            
+            dbfunc = self.bot.database_handler
+            userid = ctx.author.id
+            username = ctx.author.name
             num1 = random.randint(0, 100) #mob type
             num2 = random.randint(0, 100) #drop rate
             num3 = random.randint(0, 100) #chest drop rate
@@ -124,7 +130,7 @@ class Hunt(commands.Cog):
                     mobselected = 'vindicator'
                     mobdef = 120
                     mobatk = 130
-  
+
             elif stats.area == 8:
                 mobxp = 40
                 if num1 <= 50:
@@ -235,76 +241,76 @@ class Hunt(commands.Cog):
                     loot = 'nothing'
                 elif num2 <= 75:
                     loot = '5 pogchops'
-                    db[stats.userid + 'pogchop'] += 5
+                    await dbfunc.updateIntValue('pogchop', 'mobdrop', userid, 5)
                     
                 elif num2 <= 100:
                     loot = '10 pogchops'
-                    db[stats.userid + 'pogchop'] += 10
+                    await dbfunc.updateIntValue('pogchop', 'mobdrop', userid, 10)
     
             elif mobselected in ['cow', 'angrycow']:
                 if num2 <= 25:
                     loot = 'nothing'
                 elif num2 <= 75:
                     loot = '5 beefs'
-                    db[stats.userid + 'beef'] += 5
+                    await dbfunc.updateIntValue('beef', 'mobdrop', userid, 5)
                 elif num2 <= 100:
                     loot = '10 beefs'
-                    db[stats.userid + 'beef'] += 10
+                    await dbfunc.updateIntValue('beef', 'mobdrop', userid, 10)
                 
             elif mobselected in ['sheep', 'angrysheep']:
                 if num2 <= 75:
                     loot = 'nothing'
                 elif num2 <= 95:
                     loot = '1 wool'
-                    db[stats.userid + 'wool'] += 1
+                    await dbfunc.updateIntValue('wool', 'mobdrop', userid, 1)
                 elif num2 <= 100:
                     loot = '2 wools'
-                    db[stats.userid + 'wool'] += 2
+                    await dbfunc.updateIntValue('wool', 'mobdrop', userid, 2)
     
             elif mobselected == 'broke zombie villager':
                 if num2 <= 95:
                     loot = 'nothing'
                 elif num2 <= 100:
                     loot = '1 map scrap'
-                    db[stats.userid + 'map_scrap'] += 1
+                    await dbfunc.updateIntValue('map_scrap', 'mobdrop', userid, 1)
             
             elif mobselected == 'witherskeleton':
                 if num2 <= 50:
                     loot = 'nothing'
                 elif num2 <= 75:
-                    loot = 'coal'
-                    db[stats.userid + 'coal'] += 1
+                    loot = '1 coal'
+                    await dbfunc.updateIntValue('coal', 'misc', userid, 1)
                 elif num2 <= 100:
                     loot = '1 wither skull'
-                    db[stats.userid + 'wither_skull'] += 1
+                    await dbfunc.updateIntValue('wither_skull', 'mobdrop', userid, 11)
     
             elif mobselected == 'blaze':
                 if num2 <= 75:
                     loot = 'nothing'
                 elif num2 <= 100:
                     loot = '1 blaze rod' 
-                    db[stats.userid + 'blaze_rod'] += 1
+                    await dbfunc.updateIntValue('blaze_rod', 'mobdrop', userid, 1)
             
             elif mobselected == 'ghast':
                 if num2 <= 95:
                     loot = 'nothing'
                 elif num2 <= 100:
                     loot = '1 soul sand'
-                    db[stats.userid + 'soul_sand'] += 1
-            
+                    await dbfunc.updateIntValue('soul_sand', 'misc', userid, 1)
+                    
             elif mobselected == 'enderman':
                 if num2 <= 75:
                     loot = 'nothing'
                 elif num2 <= 100:
                     loot = '1 ender pearl' 
-                    db[stats.userid + 'ender_pearl'] += 1
+                    await dbfunc.updateIntValue('ender_pearl', 'mobdrop', userid, 10)
     
             #calculate damage
             mobatktotal = mobdef / stats.atk
             damage = (mobatk - stats.defend) * round(mobatktotal)
             if damage < 0: damage = 0
             newhp = stats.hp - damage
-            db[stats.userid + 'hp'] = newhp
+            await dbfunc.setIntValue('hp', 'stats', userid, -damage)
     
             #chestdrop
             if num3 <= 10:
@@ -329,33 +335,33 @@ class Hunt(commands.Cog):
     
             if newhp > 0: #successfully killed mob
                 await ctx.send(f'''
-    **{ctx.author.name}** found and killed **{mobselected}**
+    **{username}** found and killed **{mobselected}**
     Lost {damage} HP, remaining HP is {newhp}/100
     Earned {mobxp} XP and got **{loot}**''')
-                newxp = mobxp + db[stats.userid + 'xp']
+                newxp = mobxp + stats.xp
                 maxxp = stats.level * 200
                 if newxp > maxxp: #upgradable
                     newxp = newxp - maxxp
-                    db[stats.userid + 'level'] = stats.level + 1
-                    db[stats.userid + 'xp'] = newxp
+                    await dbfunc.updateIntValue('level', 'stats', userid, 1)
+                    await dbfunc.setIntValue('xp', 'stats', userid, newxp)
                     atk_def(ctx)
-                    await ctx.send(f'**{ctx.author.name}** just up a level!')
+                    await ctx.send(f'**{username}** just up a level!')
                 else: 
-                    db[stats.userid + 'xp'] = newxp
+                    await dbfunc.setIntValue('xp', 'stats', userid, newxp)
     
-                if chesttype != None: #chest
-                    db[stats.userid + chesttype] = db[stats.userid + chesttype] + 1
-                    await ctx.send(f'**{ctx.author.name}** got 1 {chesttype} {echest}')
+                if chesttype is not None: #chest
+                    await dbfunc.updateIntValue(chesttype, 'misc', userid, 1)
+                    await ctx.send(f'**{username}** got 1 {chesttype} {echest}')
 
             else:
-                db[stats.userid + 'hp'] = 100
-                await ctx.send(f'**{ctx.author.name}** died found a **{mobselected}**, but lost fighting\nRoses are red and violets are blue, you just died and lost some levels too')
-                db[stats.userid + 'level'] = stats.level - 1
-                db[stats.userid + 'xp'] = 0
+                await dbfunc.updateIntValue('hp', 'stats', userid, 100)
+                await ctx.send(f'**{username}** died found a **{mobselected}**, but lost fighting\nRoses are red and violets are blue, you just died and lost some levels too')
+                await dbfunc.updateIntValue('level', 'stats', userid, -1)
+                await dbfunc.setIntValue('xp', 'stats', userid, 0)
     
             return damage, loot
         except KeyError: #error handler
-            await ctx.send(f'**{ctx.author.name}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
+            await ctx.send(f'**{username}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
 
 async def setup(bot):
     await bot.add_cog(Hunt(bot))

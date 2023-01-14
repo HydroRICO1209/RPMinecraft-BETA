@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 from progress.stats import *
+from progress.mobdrop import *
 
 class Eat(commands.Cog):
     def __init__(self, bot):
@@ -10,44 +11,49 @@ class Eat(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def eat(self, ctx, arg:str):
         try:
-            item = None
+            mobdrop = Mobdrop(ctx)
             stats = Stats(ctx)
+            dbfunc = self.bot.database_handler
+            userid = ctx.author.id  
+            username = ctx.author.name
+
             if stats.hp >= 100:
-                await ctx.send(f'**{ctx.author.name}**, you want me to force feed you?')
+                await ctx.send(f'**{username}**, you want me to force feed you?')
             else:
                 if arg == 'pogchop': #5hp
-                    if item.pogchop == 0:
-                        await ctx.send(f'**{ctx.author.name}**, you dont have a pogchop')
+                    if mobdrop.pogchop == 0:
+                        await ctx.send(f'**{username}**, you dont have a pogchop')
                     else:
-                        db[stats.userid + 'pogchop'] = item.pogchop - 1
-                        db[stats.userid + 'hp'] = stats.hp + 5
-                        await ctx.send(f'**{ctx.author.name}** ate a pogchop and regen **5HP**')
-        
+                        await dbfunc.updateIntValue('pogchop', 'mobdrop', userid, -1)
+                        await dbfunc.updateIntValue('hp', 'stats', userid, 5)
+                        await ctx.send(f'**{username}** ate a pogchop and regen **5HP**')
+
                 elif arg == 'cooked_pogchop': #15hp
-                    if item.cooked_pogchop == 0: 
-                        await ctx.send(f'**{ctx.author.name}**, you dont have a cooked_pogchop')
+                    if mobdrop.cooked_pogchop == 0: 
+                        await ctx.send(f'**{username}**, you dont have a cooked_pogchop')
                     else:
-                        db[stats.userid + 'cooked_pogchop'] = item.cooked_pogchop - 1
-                        db[stats.userid + 'hp'] = stats.hp + 15
-                        await ctx.send(f'**{ctx.author.name}** ate a cooked_pogchop and regen **15HP**')
+                        await dbfunc.updateIntValue('cooked_pogchop', 'mobdrop', userid, -1)
+                        await dbfunc.updateIntValue('hp', 'stats', userid, 15)
+                        await ctx.send(f'**{username}** ate a cooked_pogchop and regen **15HP**')
                         
                 elif arg == 'beef': #20hp
-                    if item.beef == 0:
-                        await ctx.send(f'**{ctx.author.name}**,you dont have a beef')
+                    if mobdrop.beef == 0:
+                        await ctx.send(f'**{username}**,you dont have a beef')
                     else:
-                        db[stats.userid + 'beef'] = item.beef - 1
-                        db[stats.userid + 'hp'] = stats.hp + 20
-                        await ctx.send(f'**{ctx.author.name}** ate a beef and regen **20HP**')
-
+                        await dbfunc.updateIntValue('beef', 'mobdrop', userid, -1)
+                        await dbfunc.updateIntValue('hp', 'stats', userid, 20)
+                        await ctx.send(f'**{username}** ate a beef and regen **20HP**')
+                
                 elif arg == 'steak': #40hp
-                    if item.steak == 0:
-                        await ctx.send(f'**{ctx.author.name}**,you dont have a steak')
+                    if mobdrop.steak == 0:
+                        await ctx.send(f'**{username}**,you dont have a steak')
                     else:
-                        db[stats.userid + 'steak'] = item.steak - 1
-                        db[stats.userid + 'hp'] = stats.hp + 40
-                        await ctx.send(f'**{ctx.author.name}** ate a steak and regen **40HP**')
+                        await dbfunc.updateIntValue('steak', 'mobdrop', userid, -1)
+                        await dbfunc.updateIntValue('hp', 'stats', userid, 40)
+                        await ctx.send(f'**{username}** ate a steak and regen **40HP**')
+                        
         except KeyError: #error handler
-            await ctx.send(f'**{ctx.author.name}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
+            await ctx.send(f'**{username}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
 
 async def setup(bot):
     await bot.add_cog(Eat(bot))

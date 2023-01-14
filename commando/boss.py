@@ -11,16 +11,11 @@ class Boss(commands.Cog):
     @commands.cooldown(1, 86400, commands.BucketType.user)
     async def boss(self, ctx):
         try:
+            stats = Stats(ctx)
             dbfunc = self.bot.database_handler
             userid = ctx.author.id
-            username = ctx.author.name
-            highestArea = await dbfunc.fetchValue('highest_area', 'stats', userid)
-            area = await dbfunc.fetchValue('area', 'stats', userid)
-            atk = await dbfunc.fetchValue('atk', 'stats', userid)
-            defend = await dbfunc.fetchValue('defend', 'stats', userid)
-            hp = await dbfunc.fetchValue('hp', 'stats', userid)
-            xp = await dbfunc.fetchValue('xp', 'stats', userid)
-            level = await dbfunc.fetchValue('level', 'stats', userid)
+            username = username
+
             
             if higherArea > area:
                 await ctx.send('This area doesnt have any boss anymore')
@@ -36,7 +31,7 @@ class Boss(commands.Cog):
                     mobatk = 25
                     newArea = 3
                 elif area == 3:
-                    bossName = 'woc eth , enobrennid'
+                    bossName = 'WOC ehT , enobrenniD'
                     mobdef = 200
                     mobatk = 35
                     newArea = 4
@@ -95,35 +90,30 @@ class Boss(commands.Cog):
                     await dbfunc.setIntValue('hp', 'stats', userid, newhp)
                     await dbfunc.setIntValue('highest_area', 'stats', userid, newArea)
                     await dbfunc.setIntValue('area', 'stats', userid, newArea)
-                    db[userid + 'hp'] = newhp
-                    db[userid + 'highestArea'] = newArea
-                    db[userid + 'area'] = newArea
                     await ctx.send(f'''
-    **{ctx.author.name}** went into a BIGGG cave to find the boss
-    Looks like **{ctx.author.name}** found **{bossName}**
+    **{username}** went into a BIGGG cave to find the boss
+    Looks like **{username}** found **{bossName}**
     Some serious fights are going on
-    LOOKS LIKE **{ctx.author.name}** WINS
+    LOOKS LIKE **{username}** WINS
     Lost {damage} HP, remaining HP {newhp}/100
-    **{ctx.author.name}** went to the NEXT AREA!!!
+    **{username}** went to the NEXT AREA!!!
 ''')
                 else:
-                    db[stats.userid + 'hp'] = 100
+                    await dbfunc.setIntValue('hp', 'stats', userid, 100)
                     if stats.level > 1:
-                        db[stats.userid + 'level'] = stats.level - 1
-                        db[stats.userid + 'xp'] = 0
-                    else:
-                        db[stats.userid + 'xp'] = 0
+                        await dbfunc.updateIntValue('level', 'stats', userid, -1)
+                    await dbfunc.setIntValue('xp', 'stats', userid, 0)
                     await ctx.send(f'''
-**{ctx.author.name}** went into a BIGGG cave to find the boss
-Looks like **{ctx.author.name}** found **{bossName}**
+**{username}** went into a BIGGG cave to find the boss
+Looks like **{username}** found **{bossName}**
 Some serious fights are going on
 THINGS DOESNT LOOKS GOOD
-**{ctx.author.name}** lost fighting
+**{username}** lost fighting
 **BETTER LUCK NEXT TIME!**
 ''')
                     atk_def(ctx)
         except KeyError: #error handler
-            await ctx.send(f'**{ctx.author.name}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
+            await ctx.send(f'**{username}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
 
 async def setup(bot):
     await bot.add_cog(Boss(bot))
