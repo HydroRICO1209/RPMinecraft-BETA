@@ -58,6 +58,13 @@ VALUES ($1, 100, 1, 1, 1, 1, 0, 1, 0)
 ON CONFLICT DO NOTHING
 ''', userid)
             
+            #illegal
+            await self.bot.db.execute('''
+INSERT INTO stats (playerid, bedrock, bedrock_trophy, pog_champ)
+VALUES ($1, 0, 0, 0)
+ON CONFLICT DO NOTHING
+''', userid)
+            
         embed = discord.Embed(
             title = f'**Welcome to RPMinecraft, {username}**',
             description = f'''

@@ -1,10 +1,7 @@
 from discord.ext import commands
 import discord
-from progress.itemlist import itemss
-from progress.itemlist import armors
-from progress.itemlist import statss
+from progress.itemlist import *
 from progress.my_emote import *
-from progress.stats import *
 
 class MyCog(commands.Cog):
     def __init__(self, bot):
@@ -15,31 +12,35 @@ class MyCog(commands.Cog):
     async def inventory(self,ctx):
         try:
             e = My_emote(ctx)
-            stats = Stats(ctx)
-            res1 = ''
-            for items in itemss['mobdrop']:
-                e = discord.utils.get(self.bot.emojis, name = items)
-                value = db[stats.userid + items]
+            dbfunc = self.bot.database_handler
+            userid = ctx.author.id
+            username = ctx.author.name
+            
+
+            mobdrop_str = ''
+            for mobdrop in itemlist.mobdrop_list:
+                e = discord.utils.get(self.bot.emojis, name = mobdrop)
+                value = db[userid + items]
                 if value > 0:
-                    res1 += f"{e}{items}: {value}\n"
+                    mobdrop_str += f"{e}{items}: {value}\n"
 
             res2 = ''
             for items in itemss['misc']:
                 e = discord.utils.get(self.bot.emojis, name = items)
-                value = db[stats.userid + items]
+                value = db[userid + items]
                 if value > 0:
                     res2 += f"{e}{items}: {value}\n"
 
             res3 = ''
             for items in itemss['illegal']:
                 e = discord.utils.get(self.bot.emojis, name = items)
-                value = db[stats.userid + items]
+                value = db[userid + items]
                 if value > 0:
                     res3 += f"{e}{items}: {value}\n"
         
             res4 = ''
             for armor in armors:
-                value = db[stats.userid + armor]
+                value = db[userid + armor]
         
                 if value == 0:
                     res4 += f'No {armor}\n'

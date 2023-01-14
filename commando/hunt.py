@@ -310,7 +310,7 @@ class Hunt(commands.Cog):
             damage = (mobatk - stats.defend) * round(mobatktotal)
             if damage < 0: damage = 0
             newhp = stats.hp - damage
-            await dbfunc.setIntValue('hp', 'stats', userid, -damage)
+            await dbfunc.setIntValue('hp', 'stats', userid, newhp)
     
             #chestdrop
             if num3 <= 10:
