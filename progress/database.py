@@ -19,7 +19,12 @@ class Database:
         update_query = f'UPDATE {tablename} SET {item} = $1 WHERE playerid = $2'
         await self.bot.db.execute(update_query, int(newvalue), int(userid))
         
-    async def updateStrValue(self, item, tablename, userid, newvalue):
-        #item, tablename, userid, newvalue
+    async def setIntValue(self, item, tablename, userid, number):
+        #item, tablename, userid, number
         update_query = f'UPDATE {tablename} SET {item} = $1 WHERE playerid = $2'
-        await self.bot.db.execute(update_query, newvalue, int(userid))
+        await self.bot.db.execute(update_query, int(number), int(userid))
+        
+    async def updateStrValue(self, item, tablename, userid, newStr):
+        #item, tablename, userid, newStr
+        update_query = f'UPDATE {tablename} SET {item} = $1 WHERE playerid = $2'
+        await self.bot.db.execute(update_query, newStr, int(userid))
