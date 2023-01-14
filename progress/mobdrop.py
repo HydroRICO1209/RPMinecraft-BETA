@@ -1,4 +1,4 @@
-class mobdr():
+class Mobdrop():
     async def __init__(self, ctx):
         dbfunc = self.bot.database_handler
 

@@ -1,16 +1,12 @@
 class Stats():
-    def __init__(self, ctx):
-        self.userid = str(ctx.author.id)
-        self.helmet = db[self.userid  +'helmet']
-        self.chestplate = db[self.userid + 'chestplate' ]
-        self.leggings = db[self.userid + 'leggings']
-        self.boots = db[self.userid + 'boots']
-        self.sword = db[self.userid + 'sword']  
-        self.hp = db[self.userid + 'hp']  
-        self.level = db[self.userid + 'level']
-        self.highestArea = db[self.userid + 'highestArea']
-        self.atk = db[self.userid + 'atk']
-        self.defend = db[self.userid + 'defend']
-        self.xp = db[self.userid + 'xp']
+    async def __init__(self, ctx):
+        dbfunc = self.bot.database_handler
+
+        self.userid = ctx.author.id
+        self.hp = await dbfunc.fetchValue('hp', 'misc', self.userid)
+        self.highest_area = await dbfunc.fetchValue('highest_area', 'armors', self.userid)
+        self.atk = await dbfunc.fetchValue('atk', 'armors', self.userid)
+        self.defend = await dbfunc.fetchValue('defend', 'armors', self.userid)
+        self.xp = await dbfunc.fetchValue('xp', 'armors', self.userid)
         self.maxxp = self.level * 200
-        self.area = db[self.userid + 'area']
+        self.area = await dbfunc.fetchValue('area', 'armors', self.userid)
