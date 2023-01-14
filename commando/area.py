@@ -10,10 +10,13 @@ class Area(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def area(self, ctx, arg: int):
         try:
-            stats = Stats(ctx)
+            dbfunc = self.bot.database_handler
+            userid = ctx.author.id
+            area = await dbfunc.fetchValue('area', 'stats', userid)
+            highestArea = await dbfunc.fetchValue('highest_area', 'stats', userid)
             if 1 <= arg <= 14:
-                if arg <= stats.highestArea:
-                    db[stats.userid + 'area'] = arg
+                if arg <= area:
+                    await dbfunc.updateIntValue('area', 'stats', userid, arg)
                     await ctx.send(f'**{ctx.author.name}** has moved to **AREA {arg}**')
                 else:
                     await ctx.send(f'**{ctx.author.name}** fight more bosses to unlock this area :D')
