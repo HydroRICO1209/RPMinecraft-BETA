@@ -12,9 +12,9 @@ class Start(commands.Cog):
         username = ctx.author.name
         userid = ctx.author.id
         my_emote = My_emote(ctx)
-        created = await self.bot.db.fetch('SELECT * FROM stats WHERE playerid = $1', userid)
+        created = await self.bot.db.fetchval('SELECT * FROM stats WHERE playerid = $1', userid)
         
-        if created == []:
+        if created == None:
             
             #armors
             await self.bot.db.execute('''
