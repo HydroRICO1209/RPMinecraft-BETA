@@ -1,11 +1,13 @@
-def atk_def(ctx):
-    userid = str(ctx.author.id)
-    helmet = db[userid + 'helmet']
-    chestplate = db[userid + 'chestplate']
-    leggings = db[userid + 'leggings']
-    boots = db[userid + 'boots']
-    sword = db[userid + 'sword']
-    level = db[userid + 'level']
+async def atk_def(ctx):
+    dbfunc = self.bot.database_handler
+    userid = ctx.author.id
+
+    helmet = await dbfunc.fetchValue('helmet', 'armors', self.userid)
+    chestplate = await dbfunc.fetchValue('chestplate', 'armors', self.userid)
+    leggings = await dbfunc.fetchValue('leggings', 'armors', self.userid)
+    boots = await dbfunc.fetchValue('boots', 'armors', self.userid)
+    sword = await dbfunc.fetchValue('sword', 'armors', self.userid)
+    level = await dbfunc.fetchValue('level', 'armors', self.userid)
     
     userdef = level * 1 
     if helmet == 0:
@@ -96,5 +98,5 @@ def atk_def(ctx):
     elif sword == 69:
         useratk += 30
 
-    db[userid + 'atk'] = useratk
-    db[userid + 'defend'] = userdef
+    await dbfunc.setIntValue('atk', 'stats', userid, useratk)
+    await dbfunc.setIntValue('defend', 'stats', userid, userdef)
