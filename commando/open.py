@@ -163,7 +163,7 @@ class Open(commands.Cog):
                                     lootnum = 4
                                 elif num2 <= 100: #10%
                                     lootnum = 5
-                            db[f'{misc.userid}{loot}'] += lootnum
+                            await dbfunc.updateIntValue(loot, 'misc', userid, lootnum)
                             lootlist += f'\n{my_emote}{loot} x{lootnum}'
                     await ctx.send(lootlist)
 
@@ -173,7 +173,7 @@ class Open(commands.Cog):
             elif arg in ['e', 'epic chest']:
                 lootlist = f'**{username}** opened an epic chest and got:'
                 if misc.epic_chest > 0: #have the chest
-                    db[misc.userid + 'epic_chest'] = misc.epic_chest - 1
+                    await dbfunc.updateIntValue('epic_chest', 'misc', userid, -1)
 
                     common = ['beef', 'wool', 'coal', 'iron_ingot', 'diamond']
                     for loot in common:
@@ -187,7 +187,12 @@ class Open(commands.Cog):
                                 lootnum = 8
                             elif num2 <= 100: #10%
                                 lootnum = 10
-                            db[f'{misc.userid}{loot}'] += lootnum
+                            
+                            if loot in mobdrop_list:
+                                await dbfunc.updateIntValue(loot, 'mobdrop', userid, lootnum)
+                            elif loot in misc_list:
+                                await dbfunc.updateIntValue(loot, 'misc', userid, lootnum)
+                                
                             lootlist += f'\n{my_emote}{loot} x{lootnum}'
 
                     rare = ['blaze_rod', 'emerald', 'netherite_scrap', 'rare_chest']
@@ -202,7 +207,12 @@ class Open(commands.Cog):
                                 lootnum = 7
                             elif num2 <= 100: #10%
                                 lootnum = 9
-                            db[f'{misc.userid}{loot}'] += lootnum
+                            
+                            if loot in mobdrop_list:
+                                await dbfunc.updateIntValue(loot, 'mobdrop', userid, lootnum)
+                            elif loot in misc_list:
+                                await dbfunc.updateIntValue(loot, 'misc', userid, lootnum)
+                                
                             lootlist += f'\n{my_emote}{loot} x{lootnum}'
 
                     super_rare = ['wither_skull']
@@ -210,7 +220,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         if num1 <= 10: #10% drop rate
                             my_emote = discord.utils.get(bot.emojis, name = loot)
-                            db[f'{misc.userid}{loot}'] += lootnum
+                            await dbfunc.updateIntValue(loot, 'mobdrop', userid, 1)
                             lootlist += f'\n{my_emote}{loot} x{lootnum}'
                     await ctx.send(lootlist)
 
@@ -233,7 +243,12 @@ class Open(commands.Cog):
                                 lootnum = 15
                             elif num2 <= 100: #5%
                                 lootnum = 20
-                            db[f'{misc.userid}{loot}'] += lootnum
+                            
+                            if loot in mobdrop_list:
+                                await dbfunc.updateIntValue(loot, 'mobdrop', userid, lootnum)
+                            elif loot in misc_list:
+                                await dbfunc.updateIntValue(loot, 'misc', userid, lootnum)
+                                
                             lootlist += f'\n{my_emote}{loot} x{lootnum}'
 
                     rare = ['ender_pearl', 'gold', 'wood']
@@ -248,7 +263,12 @@ class Open(commands.Cog):
                                 lootnum = 8
                             elif num2 <= 100: #10%
                                 lootnum = 10
-                            db[f'{misc.userid}{loot}'] += lootnum
+                            
+                            if loot in mobdrop_list:
+                                await dbfunc.updateIntValue(loot, 'mobdrop', userid, lootnum)
+                            elif loot in misc_list:
+                                await dbfunc.updateIntValue(loot, 'misc', userid, lootnum)
+                                
                             lootlist += f'\n{my_emote}{loot} x{lootnum}'
 
                     super_rare = ['wither_skull', 'netherite_scrap']
@@ -256,7 +276,12 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         if num1 <= 20: #20% drop rate
                             my_emote = discord.utils.get(bot.emojis, name = loot)
-                            db[f'{misc.userid}{loot}'] += lootnum
+                            
+                            if loot in mobdrop_list:
+                                await dbfunc.updateIntValue(loot, 'mobdrop', userid, 1)
+                            elif loot in misc_list:
+                                await dbfunc.updateIntValue(loot, 'misc', userid, 1)
+                                
                             lootlist += f'\n{my_emote}{loot} x{lootnum}'
 
                     await ctx.send(lootlist)
@@ -269,19 +294,19 @@ class Open(commands.Cog):
                     db[misc.userid + 'legendary_chest'] = misc.legendary_chest - 1
                     mobdrop = ['pogchop', 'beef', 'wool', 'map_scrap', 'wither_skull', 'blaze_rod', 'ender_pearl'] #3 random mobdrop x20
                     for _ in range(3):
-                        num1 = random.randint(-1, 6)
+                        num1 = random.randint(0, 6)
                         loot = mobdrop[num1]
                         my_emote = discord.utils.get(bot.emojis, name = loot)
                         if loot in ['map_scrap', 'wither_skull', 'ender_pearl']:
-                            db[f'{misc.userid}{loot}'] += 2
+                            await dbfunc.updateIntValue(loot, 'mobdrop', userid, 2)
                             lootlist += f'\n{my_emote}{loot} x2'
                         else:
-                            db[f'{misc.userid}{loot}'] += 20
+                            await dbfunc.updateIntValue(loot, 'mobdrop', userid, 20)
                             lootlist += f'\n{my_emote}{loot} x20'
                         
                     ore = ['coal', 'iron_ingot', 'diamond', 'gold_ingot', 'netherite_scrap', 'redstone', 'soul_sand'] #3 random ore x20
                     for _ in range(3):
-                        num1 = random.randint(-1, 6)
+                        num1 = random.randint(0, 6)
                         loot = ore[num1]
                         my_emote = discord.utils.get(bot.emojis, name = loot)
                         if loot in ['netherite_scrap', 'soul_sand']:

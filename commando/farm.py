@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
-from progress.item import *
+from progress.farm import *
+from progress.farmlist import *
 
 class farm(commands.Cog):
     def __init__(self, bot):
