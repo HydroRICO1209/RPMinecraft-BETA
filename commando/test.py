@@ -14,7 +14,7 @@ class Test(commands.Cog):
         arglen = len(arglists)
         if arglen == 3:
             #item, tablename, userid
-            value = await dbfunc.fetchvalue(arglists[0], arglists[1], arglists[2])
+            value = await dbfunc.fetchValue(arglists[0], arglists[1], arglists[2])
             await ctx.send(value)
         else:
             await ctx.send(f'arglen is only {arglen}, it should be 3 dumb')
