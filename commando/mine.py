@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord, random
 from progress.stats import *
+from progress.misc import *
 from progress.my_emote import *
 
 class Mine(commands.Cog):
@@ -11,8 +12,13 @@ class Mine(commands.Cog):
     @commands.cooldown(1, 20, commands.BucketType.user)
     async def mine(self, ctx):
         try:
+            misc = Misc(ctx)
             stats = Stats(ctx)
             e = My_emote(ctx)
+            
+            dbfunc = self.bot.database_handler
+            userid = ctx.author.id
+            username = ctx.author.id
             num1 = random.randint(0, 100)
             num2 = random.randint(0, 100)
     
@@ -80,45 +86,39 @@ class Mine(commands.Cog):
             if loottype == 'netherite_scrap':
                 if num2 <= 69: #69%
                     lootcount = 1
-                    db[stats.userid + loottype] += 1
                 elif num2 <= 89: #20%
                     lootcount = 2
-                    db[stats.userid + loottype] += 2
                 elif num2 <= 89: #10%
                     lootcount = 3
-                    db[stats.userid + loottype] += 3
                 elif num2 <= 100:#1%
                     lootcount = 4
-                    db[stats.userid + loottype] += 4
+                await dbfunc.updateIntValue(loottype, 'misc', userid, lootcount)
 
             else:
                 if num2 <= 45: #45%
                     lootcount = 1
-                    db[stats.userid + loottype] += 1
                 elif num2 <= 75: #30%
                     lootcount = 2
-                    db[stats.userid + loottype] += 2
                 elif num2 <= 85: #10%
                     lootcount = 3
-                    db[stats.userid + loottype] += 3
                 elif num2 <= 95: #10%
                     lootcount = 5
-                    db[stats.userid + loottype] += 5
                 elif num2 <= 100: #5%
                     lootcount = 10
-                    db[stats.userid + loottype] += 10
+                await dbfunc.updateIntValue(loottype, 'misc', userid, lootcount)
     
             if lootcount == 1:
-                await ctx.send(f'**{ctx.author.name}** found and mined **{lootcount} {loottype}** {emotechosen}')
+                await ctx.send(f'**{username}** found and mined **{lootcount} {loottype}** {emotechosen}')
             else:
-                await ctx.send(f'**{ctx.author.name}** found and mined **{lootcount} {loottype}s** {emotechosen}')
+                await ctx.send(f'**{username}** found and mined **{lootcount} {loottype}s** {emotechosen}')
         
             num1 = random.randint(0,10000) 
             if num1 == 69: #bedrock 0.1%
-                await ctx.send(f'HOLEY POGEY, **{ctx.author.name}** GOT A **BEDROCK** {e.ebedrock}. SOMEONE CLIP THAT!')
-                db[stats.userid + 'bedrock'] += 1
+                await ctx.send(f'HOLEY POGEY, **{username}** GOT A **BEDROCK** {e.ebedrock}. SOMEONE CLIP THAT!')
+                await dbfunc.updateIntValue('bedrock', 'illegal', userid, 1)
+                
         except KeyError: #error handler
-            await ctx.send(f'**{ctx.author.name}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
+            await ctx.send(f'**{username}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
 
 async def setup(bot):
     await bot.add_cog(Mine(bot))

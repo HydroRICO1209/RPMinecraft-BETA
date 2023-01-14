@@ -16,74 +16,87 @@ class MyCog(commands.Cog):
             userid = ctx.author.id
             username = ctx.author.name
             
-
+            #mobdrop
             mobdrop_str = ''
             for mobdrop in itemlist.mobdrop_list:
                 e = discord.utils.get(self.bot.emojis, name = mobdrop)
-                value = db[userid + items]
-                if value > 0:
-                    mobdrop_str += f"{e}{items}: {value}\n"
+                value = await dbfunc.fetchValue(mobdrop, 'mobdrop', userid)
+                if value is not 0:
+                    mobdrop_str += f"{e}{mobdrop}: {value}\n"
 
-            res2 = ''
-            for items in itemss['misc']:
-                e = discord.utils.get(self.bot.emojis, name = items)
-                value = db[userid + items]
-                if value > 0:
-                    res2 += f"{e}{items}: {value}\n"
+            #misc
+            misc_str = ''
+            for misc in misc_list:
+                e = discord.utils.get(self.bot.emojis, name = misc)
+                value = await dbfunc.fetchValue(misc, 'misc', userid)
+                if value is not 0:
+                    misc_str += f"{e}{misc}: {value}\n"
 
-            res3 = ''
-            for items in itemss['illegal']:
+            #farm
+            farm_str = ''
+            for farm in farm_list:
+                e = discord.utils.get(self.bot.emojis, name = farm)
+                value = await dbfunc.fetchValue(farm, 'farm', userid)
+                if value is not 0:
+                    farm_str += f"{e}{farm}: {value}\n"
+                    
+            #illegal
+            illegal_str = ''
+            for illegal in illegal_list:
                 e = discord.utils.get(self.bot.emojis, name = items)
-                value = db[userid + items]
-                if value > 0:
-                    res3 += f"{e}{items}: {value}\n"
-        
-            res4 = ''
+                value = await dbfunc.fetchValue(illegal, 'illegal', userid)
+                if value is not 0:
+                    illegal_str += f"{e}{items}: {value}\n"
+
+            #armors & sword
+            armors_str = ''
             for armor in armors:
-                value = db[userid + armor]
+                value = await dbfunc.fetchValue(armors, 'armor', userid)
         
                 if value == 0:
-                    res4 += f'No {armor}\n'
+                    armors_str += f'No {armor}\n'
                 if value == 1:
                     e = discord.utils.get(self.bot.emojis, name = f'pog_{armor}')
-                    res4 += f'{e}pog_{armor}\n'
+                    armors_str += f'{e}pog_{armor}\n'
                 if value == 2:
                     e = discord.utils.get(self.bot.emojis, name = f'iron_{armor}')
-                    res4 += f'{e}iron_{armor}\n'
+                    armors_str += f'{e}iron_{armor}\n'
                 if value == 3:
                     e = discord.utils.get(self.bot.emojis, name = f'diamond_{armor}')
-                    res4 += f'{e}diamond_{armor}\n'
+                    armors_str += f'{e}diamond_{armor}\n'
                 if value == 4:
                     e = discord.utils.get(self.bot.emojis, name = f'mw_diamond_{armor}')
-                    res4 += f'{e}meaty_wooly_diamond_{armor}\n'
+                    armors_str += f'{e}meaty_wooly_diamond_{armor}\n'
                 if value == 5:
                     e = discord.utils.get(self.bot.emojis, name = f'smw_diamond_{armor}')
-                    res4 += f'{e}shiny_meaty_wooly_diamond_{armor}\n'
+                    armors_str += f'{e}shiny_meaty_wooly_diamond_{armor}\n'
                 if value == 6:
                     e = discord.utils.get(self.bot.emojis, name = f'smw_netherite_{armor}')
-                    res4 += f'{e}shiny meaty wooly netherite {armor}\n'
+                    armors_str += f'{e}shiny meaty wooly netherite {armor}\n'
                 if value == 7:
                     e = discord.utils.get(self.bot.emojis, name = f'msmw_netherite_{armor}')
-                    res4 += f'{e}more shiny meaty wooly netherite {armor}\n'
+                    armors_str += f'{e}more shiny meaty wooly netherite {armor}\n'
                 if value == 69:
-                    res4 += '<:beefy_sword:917410854209749023> beefy_sword'
+                    armors_str += '<:beefy_sword:917410854209749023> beefy_sword'
 
-            if res1 == '': res1 = 'None'
-            if res2 == '': res2 = 'None'
-            if res3 == '': res3 = 'None'
-            if res4 == '': res4 = 'None'
+            if mobdrop_str == '': mobdrop_str = 'None'
+            if misc_str == '': misc_str = 'None'
+            if farm_str == '': farm_str = 'None'
+            if illegal_str == '': illegal_str = 'None'
+            if armors_str == '': armors_str = 'None'
     
             embed = discord.Embed(
                 color = discord.Color.blue())
-            embed.add_field(name = 'Items',value = res1, inline=True)
-            embed.add_field(name = 'Misc',value = res2, inline=True)
-            embed.add_field(name = 'Illegal',value= res3, inline=True)
-            embed.add_field(name = 'Armors & Tools',value= res4, inline=True)
-            embed.set_author(name= f"{ctx.author.display_name}'s profile",
+            embed.add_field(name = 'Items',value = mobdrop_str, inline=True)
+            embed.add_field(name = 'Misc',value = misc_str, inline=True)
+            embed.add_field(name = 'Farm',value = farm_str, inline=True)
+            embed.add_field(name = 'Illegal',value= illegal_str, inline=True)
+            embed.add_field(name = 'Armors & Tools',value= armors_str, inline=True)
+            embed.set_author(name= f"{username}'s profile",
             icon_url = ctx.author.avatar.url)
             await ctx.send(embed=embed)
         except KeyError: #error handler
-            await ctx.send(f'**{ctx.author.name}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
+            await ctx.send(f'**{username}**, your account is either not created yet or not at the latest version. Try using `rpm start`')
 
 async def setup(bot):  
     await bot.add_cog(MyCog(bot))
