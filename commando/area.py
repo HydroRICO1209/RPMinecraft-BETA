@@ -15,7 +15,7 @@ class Area(commands.Cog):
             area = await dbfunc.fetchValue('area', 'stats', userid)
             highestArea = await dbfunc.fetchValue('highest_area', 'stats', userid)
             if 1 <= arg <= 14:
-                if arg <= area:
+                if arg <= highestArea:
                     await dbfunc.updateIntValue('area', 'stats', userid, arg)
                     await ctx.send(f'**{ctx.author.name}** has moved to **AREA {arg}**')
                 else:
