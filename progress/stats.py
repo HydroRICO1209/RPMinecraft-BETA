@@ -6,10 +6,10 @@ class Stats():
         dbfunc = self.bot.database_handler
 
         self.userid = ctx.author.id
-        self.hp = await dbfunc.fetchValue('hp', 'misc', self.userid)
-        self.highest_area = await dbfunc.fetchValue('highest_area', 'armors', self.userid)
-        self.atk = await dbfunc.fetchValue('atk', 'armors', self.userid)
-        self.defend = await dbfunc.fetchValue('defend', 'armors', self.userid)
-        self.xp = await dbfunc.fetchValue('xp', 'armors', self.userid)
+        self.hp = await dbfunc.fetchValue('hp', 'stats', self.userid)
+        self.highest_area = await dbfunc.fetchValue('highest_area', 'stats', self.userid)
+        self.atk = await dbfunc.fetchValue('atk', 'stats', self.userid)
+        self.defend = await dbfunc.fetchValue('defend', 'stats', self.userid)
+        self.xp = await dbfunc.fetchValue('xp', 'stats', self.userid)
         self.maxxp = self.level * 200
-        self.area = await dbfunc.fetchValue('area', 'armors', self.userid)
+        self.area = await dbfunc.fetchValue('area', 'stats', self.userid)
