@@ -11,10 +11,10 @@ class Boss(commands.Cog):
     @commands.cooldown(1, 86400, commands.BucketType.user)
     async def boss(self, ctx):
         try:
-            stats = Stats(ctx)
+            stats = await Stats(ctx)
             dbfunc = self.bot.database_handler
             userid = ctx.author.id
-            username = username
+            username = ctx.author.name
 
             
             if higherArea > area:

@@ -1,6 +1,8 @@
 from discord.ext import commands
 import discord
 from progress.my_emote import *
+from progress.misc import *
+
 
 class Trade(commands.Cog):
     def __init__(self, bot):
@@ -11,6 +13,7 @@ class Trade(commands.Cog):
     async def trade(self, ctx, *, arg):
         try:
             e = My_emote(ctx)
+            misc = await Misc(ctx)
             
             arglists = arg.split(" ")
             arglen = len(arglists)

@@ -11,8 +11,8 @@ class Eat(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def eat(self, ctx, arg:str):
         try:
-            mobdrop = Mobdrop(ctx)
-            stats = Stats(ctx)
+            mobdrop = await Mobdrop(ctx)
+            stats = await Stats(ctx)
             dbfunc = self.bot.database_handler
             userid = ctx.author.id  
             username = ctx.author.name

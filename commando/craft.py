@@ -14,9 +14,9 @@ class Craft(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def craft(self, ctx, *, arg: str):
         try:
-            stats = Stats(ctx)
-            misc = Misc(ctx)
-            mobdrop = Mobdrop(ctx)
+            stats = await Stats(ctx)
+            misc = await Misc(ctx)
+            mobdrop = await Mobdrop(ctx)
             e = My_emote(ctx)
             dbfunc = self.bot.database_handler
             userid = ctx.author.id

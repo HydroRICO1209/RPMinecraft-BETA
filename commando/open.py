@@ -11,8 +11,8 @@ class Open(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def open(self, ctx, *, arg: str):
         try:
-            misc = Misc(ctx)
-            mobdrop = Mobdrop(ctx)
+            misc = await Misc(ctx)
+            mobdrop = await Mobdrop(ctx)
             
             dbfunc = self.bot.database_handler
             userid = ctx.author.id

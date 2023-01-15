@@ -12,7 +12,7 @@ class Profile(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def profile(self, ctx): 
         try:
-            stats = Stats(ctx)
+            stats = await Stats(ctx)
             my_emote = My_emote(ctx)
             
             embed = discord.Embed(

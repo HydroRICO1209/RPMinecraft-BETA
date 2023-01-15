@@ -13,8 +13,8 @@ class Hunt(commands.Cog):
     async def hunt(self, ctx):
         try:
             emote = My_emote(ctx)
-            stats = Stats(ctx)
-            mobdrop = Mobdrop(ctx)
+            stats = await Stats(ctx)
+            mobdrop = await Mobdrop(ctx)
             
             dbfunc = self.bot.database_handler
             userid = ctx.author.id

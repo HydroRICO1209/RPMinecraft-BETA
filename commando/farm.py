@@ -11,7 +11,8 @@ class farm(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def farm(self, ctx, *, arg):
         try:
-            item = Item(ctx)
+            farm = await Farm(ctx)
+            farmlist = await Farmlist(ctx)
             arglists = arg.split(" ")
             arglen = len(arglists)
             await ctx.send(f'arglen: {arglen}')
