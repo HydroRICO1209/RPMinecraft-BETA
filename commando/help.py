@@ -16,16 +16,19 @@ add `rpm` before any command
 `profile`,`inventory`
 
 <:iron_sword:917408207213821972>**Fighting Commands**<:iron_sword:917408207213821972>
-`hunt`,`mine`,`boss`
+`hunt`,`mine`,`boss`,`area`
 
 :tools:**Working Commands**:tools:
-`craft 1/2`,`eat`,`area`,`cooldown`,`ready`
+`craft 1/2`,`eat`,`farm`,`open`
+
+:gift:**Claiming Commands**:gift:
+`daily`
 
 :hammer_pick:**Under Contrustion Commands(use at your own risk)**:hammer_pick:
-`open`
+`trade`
 
 :arrow_right:**Other Commands**:arrow_left:
-`ping`
+`ping`,`cooldown`,`ready`
 ''',
             color = discord.Color.blue())
         embed.set_author(name= 'Commands', 
