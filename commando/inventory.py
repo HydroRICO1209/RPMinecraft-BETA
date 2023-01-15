@@ -21,7 +21,7 @@ class MyCog(commands.Cog):
             for mobdrop in itemlist.mobdrop_list:
                 e = discord.utils.get(self.bot.emojis, name = mobdrop)
                 value = await dbfunc.fetchValue(mobdrop, 'mobdrop', userid)
-                if value is not 0:
+                if value != 0:
                     mobdrop_str += f"{e}{mobdrop}: {value}\n"
 
             #misc
@@ -29,7 +29,7 @@ class MyCog(commands.Cog):
             for misc in misc_list:
                 e = discord.utils.get(self.bot.emojis, name = misc)
                 value = await dbfunc.fetchValue(misc, 'misc', userid)
-                if value is not 0:
+                if value != 0:
                     misc_str += f"{e}{misc}: {value}\n"
 
             #farm
@@ -37,7 +37,7 @@ class MyCog(commands.Cog):
             for farm in farm_list:
                 e = discord.utils.get(self.bot.emojis, name = farm)
                 value = await dbfunc.fetchValue(farm, 'farm', userid)
-                if value is not 0:
+                if value != 0:
                     farm_str += f"{e}{farm}: {value}\n"
                     
             #illegal
@@ -45,7 +45,7 @@ class MyCog(commands.Cog):
             for illegal in illegal_list:
                 e = discord.utils.get(self.bot.emojis, name = items)
                 value = await dbfunc.fetchValue(illegal, 'illegal', userid)
-                if value is not 0:
+                if value != 0:
                     illegal_str += f"{e}{items}: {value}\n"
 
             #armors & sword

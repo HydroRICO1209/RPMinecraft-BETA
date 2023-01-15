@@ -19,63 +19,63 @@ class Boss(commands.Cog):
             
             if higherArea > area:
                 await ctx.send('This area doesnt have any boss anymore')
-            elif highestArea == area:
-                if area == 1:
+            elif highestArea is area:
+                if area is 1:
                     bossName = 'The Mutated Poggy'
                     mobdef = 50
                     mobatk = 15
                     newArea = 2
-                elif area == 2:
+                elif area is 2:
                     bossName = 'Giant Zompiggy'
                     mobdef = 100
                     mobatk = 25
                     newArea = 3
-                elif area == 3:
+                elif area is 3:
                     bossName = 'WOC ehT , enobrenniD'
                     mobdef = 200
                     mobatk = 35
                     newArea = 4
-                elif area == 4:
+                elif area is 4:
                     bossName = 'GIANT SPIDER'
                     mobdef = 500
                     mobatk = 45
                     newArea = 5
-                elif area == 5:
+                elif area is 5:
                     bossName = 'Wooly Skeleton'
                     mobdef = 800
                     mobatk = 56
                     newArea = 6
-                elif area == 6:
+                elif area is 6:
                     bossName = 'Skeleton KING'
                     mobdef = 1000
                     mobatk = 70
                     newArea = 7
-                elif area == 7:
+                elif area is 7:
                     bossName = 'Johnny, THE RAIDER'
                     mobdef = 1500
                     mobatk = 135
                     newArea = 8
-                elif area == 8:
+                elif area is 8:
                     bossName = 'Elder Guardian'
                     mobdef = 2000
                     mobatk = 300
                     newArea = 8
-                elif area == 9:
+                elif area is 9:
                     bossName = 'Cheezy Blaze'
                     mobdef = 2000
                     mobatk = 145
                     newArea = 10
-                elif area == 10:
+                elif area is 10:
                     bossName = 'GIANT MAGMA CUBE'
                     mobdef = 2300
                     mobatk = 175
                     newArea = 11
-                elif area == 11:
+                elif area is 11:
                     bossName = 'small wither'
                     mobdef = 2500
                     mobatk = 200
                     newArea = 12
-                elif area == 13:
+                elif area is 13:
                     bossName = 'Silvered Enderman'
                     mobdef = 2800
                     mobatk = 380
