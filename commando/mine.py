@@ -12,7 +12,7 @@ class Mine(commands.Cog):
     @commands.cooldown(1, 20, commands.BucketType.user)
     async def mine(self, ctx):
         try:
-            misc = await Misc.value(self, ctx)
+            misc = await Misc(ctx)
             stats = await Stats.value(self, ctx)
             e = My_emote(ctx)
             
