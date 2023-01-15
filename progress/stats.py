@@ -1,5 +1,8 @@
 class Stats():
-    async def __init__(self, ctx):
+    async def __init__(self, bot):
+        self.bot = bot
+
+    async def value(self, ctx):
         dbfunc = self.bot.database_handler
 
         self.userid = ctx.author.id

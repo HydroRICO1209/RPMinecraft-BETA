@@ -45,7 +45,7 @@ You can vote for RPMinecraft and get the following rewards (you can vote every 1
                 dbfunc = self.bot.database_handler
                 arglists = arg.split(" ")
                 arglen = len(arglists)
-                if arglen is 3:
+                if arglen == 3:
                     #item, tablename, userid
                     value = await dbfunc.fetchValue(arglists[0], arglists[1], arglists[2])
                     await ctx.send(value)
@@ -69,7 +69,7 @@ You can vote for RPMinecraft and get the following rewards (you can vote every 1
             dbfunc = self.bot.database_handler
             arglists = arg.split(" ")
             arglen = len(arglists)
-            if arglen is 4:
+            if arglen == 4:
                 #item, tablename, userid, newvalue
                 await dbfunc.setIntValue(arglists[0], arglists[1], arglists[2], arglists[3])
                 await ctx.send(f'{arglists[0]} is now {arglists[3]}')

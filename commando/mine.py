@@ -12,8 +12,8 @@ class Mine(commands.Cog):
     @commands.cooldown(1, 20, commands.BucketType.user)
     async def mine(self, ctx):
         try:
-            misc = Misc(ctx)
-            stats = Stats(ctx)
+            misc = await Misc.value(ctx)
+            stats = await Stats.value(ctx)
             e = My_emote(ctx)
             
             dbfunc = self.bot.database_handler

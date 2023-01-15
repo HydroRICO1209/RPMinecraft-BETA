@@ -1,7 +1,10 @@
 class Misc():
-    async def __init__(self, ctx):
-        dbfunc = self.bot.database_handler
+    async def __init__(self, bot):
+        self.bot = bot
 
+    async def value(self, ctx):
+        dbfunc = self.bot.database_handler
+        
         self.userid = ctx.author.id
         self.emerald = await dbfunc.fetchValue('emerald', 'misc', self.userid)
         self.cobble = await dbfunc.fetchValue('cobble', 'misc', self.userid)
