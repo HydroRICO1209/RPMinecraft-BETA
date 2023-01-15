@@ -1,5 +1,5 @@
 class Misc():
-    async def __init__(self):
+    async def __init__(self, ctx):
         dbfunc = self.bot.database_handler
         
         self.userid = ctx.author.id
