@@ -14,6 +14,7 @@ class Profile(commands.Cog):
         try:
             stats = Stats(ctx)
             my_emote = My_emote(ctx)
+            
             embed = discord.Embed(
                 description = f'''
     **PROGRESS**

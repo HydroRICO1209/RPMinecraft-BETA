@@ -11,65 +11,66 @@ class Trade(commands.Cog):
     async def trade(self, ctx, *, arg):
         try:
             e = My_emote(ctx)
+            
             arglists = arg.split(" ")
             arglen = len(arglists)
             if arglen == 1:
-                arg1 = arglists[0]
-                arg2 = 'nobody'
+                action = arglists[0]
+                trader_wanted = 'nobody'
     
             elif arglen == 3:
-                arg1 = arglists[0]
-                arg2 = arglists[1]
-                arg3 = arglists[2]
-                arg4 = 1
+                action = arglists[0]
+                trader_wanted = arglists[1]
+                trade_option = arglists[2]
+                number = 1
     
             elif arglen == 4:
-                arg1 = arglists[0]
-                arg2 = arglists[1]
-                arg3 = arglists[2]
-                arg4 = int(arglists[3])
+                action = arglists[0]
+                trader_wanted = arglists[1]
+                trade_option = arglists[2]
+                number = int(arglists[3])
 
-            if arg1 == 'sell':
+            if action == 'sell':
         
-                if arg2 == 'bob':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} wood for emerald')
-                    elif arg3 == 'b':
-                        await ctx.send(f'traded {arg4} cobble for emerald')
+                if trader_wanted == 'bob':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} wood for emerald')
+                    elif trade_option == 'b':
+                        await ctx.send(f'traded {number} cobble for emerald')
             
-                elif arg2 == 'wagner':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} iron_ingot for emerald')
-                    elif arg3 == 'b':
-                        await ctx.send(f'traded {arg4} diamond for emerald')
+                elif trader_wanted == 'wagner':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} iron_ingot for emerald')
+                    elif trade_option == 'b':
+                        await ctx.send(f'traded {number} diamond for emerald')
     
-                elif arg2 == 'sarth':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} pogchop for emerald')
-                    elif arg3 == 'b':
-                        await ctx.send(f'traded {arg4} beef for emerald')
+                elif trader_wanted == 'sarth':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} pogchop for emerald')
+                    elif trade_option == 'b':
+                        await ctx.send(f'traded {number} beef for emerald')
     
-                elif arg2 == 'ashley':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} poisonous potato for emerald')
+                elif trader_wanted == 'ashley':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} poisonous potato for emerald')
         
-                elif arg2 == 'asher':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} potato for emerald')
-                    elif arg3 == 'b':
-                        await ctx.send(f'traded {arg4} wheat_seeds for emerald')  
-                    elif arg3 == 'c':
-                        await ctx.send(f'traded {arg4} carrot for emerald')
-                    elif arg3 == 'd':
-                        await ctx.send(f'traded {arg4} wheat for emerald')
+                elif trader_wanted == 'asher':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} potato for emerald')
+                    elif trade_option == 'b':
+                        await ctx.send(f'traded {number} wheat_seeds for emerald')  
+                    elif trade_option == 'c':
+                        await ctx.send(f'traded {number} carrot for emerald')
+                    elif trade_option == 'd':
+                        await ctx.send(f'traded {number} wheat for emerald')
     
-                elif arg2 == 'ryuga':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} wool for emerald')
-                    elif arg3 == 'b':
-                        await ctx.send(f'traded {arg4} beetroot for emerald')
+                elif trader_wanted == 'ryuga':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} wool for emerald')
+                    elif trade_option == 'b':
+                        await ctx.send(f'traded {number} beetroot for emerald')
         
-                elif arg2 == 'nobody': #sell
+                elif trader_wanted == 'nobody': #sell
                     tradelist = f'''
     **__Bob, the Builder__**
     a) {e.wood}wood -> {e.emerald}emerald
@@ -110,40 +111,40 @@ class Trade(commands.Cog):
                     await ctx.send('''
 correct format of trading
 `rpm trade sell` -> to show tradelist
-`rpm trade sell [who] [a,b,c,d] [amount(optional)]` -> to trade
+`rpm trade sell [trader] [a,b,c,d] [amount(optional)]` -> to trade
 ''')
         
-            elif arg1 == 'buy':
+            elif action == 'buy':
         
-                if arg2 == 'skev':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} emerald for small_sapling')
-                    elif arg3 == 'b':
-                        await ctx.send(f'traded {arg4} emerald for apple')
+                if trader_wanted == 'skev':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} emerald for small_sapling')
+                    elif trade_option == 'b':
+                        await ctx.send(f'traded {number} emerald for apple')
             
-                elif arg2 == 'sarth':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} emerald for cooked_pogchop')
-                    elif arg3 == 'b':
-                        await ctx.send(f'traded {arg4} emerald for steak')
+                elif trader_wanted == 'sarth':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} emerald for cooked_pogchop')
+                    elif trade_option == 'b':
+                        await ctx.send(f'traded {number} emerald for steak')
     
-                elif arg2 == 'ashley':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} emerald for cleansed_dirt')
-                    elif arg3 == 'b':
-                        await ctx.send(f'traded {arg4} emerald for cleansed_water_bucket')
+                elif trader_wanted == 'ashley':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} emerald for cleansed_dirt')
+                    elif trade_option == 'b':
+                        await ctx.send(f'traded {number} emerald for cleansed_water_bucket')
     
-                elif arg2 == 'asher':
-                    if arg3 == 'a':
-                        await ctx.send(f'traded {arg4} emerald for potato')
-                    elif arg3 == 'b':
-                        await ctx.send(f'traded {arg4} emerald for wheat_seeds')
-                    elif arg3 == 'c':
-                        await ctx.send(f'traded {arg4} emerald for carrot')
-                    elif arg3 == 'd':
-                        await ctx.send(f'traded {arg4} emerald for beetroot_seeds')      
+                elif trader_wanted == 'asher':
+                    if trade_option == 'a':
+                        await ctx.send(f'traded {number} emerald for potato')
+                    elif trade_option == 'b':
+                        await ctx.send(f'traded {number} emerald for wheat_seeds')
+                    elif trade_option == 'c':
+                        await ctx.send(f'traded {number} emerald for carrot')
+                    elif trade_option == 'd':
+                        await ctx.send(f'traded {number} emerald for beetroot_seeds')      
     
-                elif arg2 == 'nobody': #buy
+                elif trader_wanted == 'nobody': #buy
                     tradelist = f'''
 **__Bob, the Builder__**
 ~~None~~
@@ -184,19 +185,19 @@ d) {e.emerald}emerald x100 -> {e.wheat_seeds}wheat_seeds x1
                     await ctx.send('''
 correct format of trading
 `rpm trade buy` -> to show tradelist
-`rpm trade buy [who] [a,b,c,d] [amount(optional)]` -> to trade
+`rpm trade buy [trader] [a,b,c,d] [amount(optional)]` -> to trade
 ''')
             else:
                 await ctx.send('''
 correct format of trading
 `rpm trade [buy/sell]` -> to show tradelist
-`rpm trade [buy/sell] [who] [a,b,c,d] [amount(optional)]` -> to trade
+`rpm trade [buy/sell] [trader] [a,b,c,d] [amount(optional)]` -> to trade
 ''')
         except UnboundLocalError:
             await ctx.send('''
 correct format of trading
 `rpm trade [buy/sell]` -> to show tradelist
-`rpm trade [buy/sell] [who] [a,b,c,d] [amount(optional)]` -> to trade
+`rpm trade [buy/sell] [trader] [a,b,c,d] [amount(optional)]` -> to trade
 ''')
 
 async def setup(bot):
