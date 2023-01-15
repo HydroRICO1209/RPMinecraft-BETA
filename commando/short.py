@@ -39,13 +39,13 @@ You can vote for RPMinecraft and get the following rewards (you can vote every 1
     async def hydrorico_check(self, ctx, arg:str): #check database value
         try:
             userid = ctx.author.id
-            if userid is not 757508305256972338:
+            if userid != 757508305256972338:
                 await ctx.send('**ACCESS DENIED**')
             else:
                 dbfunc = self.bot.database_handler
                 arglists = arg.split(" ")
                 arglen = len(arglists)
-                if arglen == 3:
+                if arglen is 3:
                     #item, tablename, userid
                     value = await dbfunc.fetchValue(arglists[0], arglists[1], arglists[2])
                     await ctx.send(value)
@@ -57,7 +57,7 @@ You can vote for RPMinecraft and get the following rewards (you can vote every 1
     @commands.command()
     async def hydrorico_server_list(self, ctx): #number of server
         userid = ctx.author.id
-        if userid is not 757508305256972338:
+        if userid != 757508305256972338:
             await ctx.send('**ACCESS DENIED**')
         else:
             for gu in bot.guilds:
@@ -69,7 +69,7 @@ You can vote for RPMinecraft and get the following rewards (you can vote every 1
             dbfunc = self.bot.database_handler
             arglists = arg.split(" ")
             arglen = len(arglists)
-            if arglen == 4:
+            if arglen is 4:
                 #item, tablename, userid, newvalue
                 await dbfunc.setIntValue(arglists[0], arglists[1], arglists[2], arglists[3])
                 await ctx.send(f'{arglists[0]} is now {arglists[3]}')

@@ -32,7 +32,7 @@ add `rpm` before any command
 ''',
             color = discord.Color.blue())
         embed.set_author(name= 'Commands', 
-            icon_url = ctx.author.avatar_url)
+            icon_url = ctx.author.avatar.url)
         embed.add_field(name='**Link**' ,value='[Offcial server](https://discord.gg/uVJrchkCeA)')
         embed.set_footer(text = 'imagine forgetting command')
         await ctx.send(embed=embed)
