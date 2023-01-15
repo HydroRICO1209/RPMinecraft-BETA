@@ -1,5 +1,5 @@
 class Stats():
-    async def __init__(self, bot):
+    def __init__(self, bot):
         self.bot = bot
 
     async def value(self, ctx):
