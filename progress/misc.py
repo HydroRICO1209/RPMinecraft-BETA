@@ -1,23 +1,22 @@
-class Misc():
-    async def __init__(self, ctx):
-        dbfunc = self.bot.database_handler
-        
-        self.userid = ctx.author.id
-        self.emerald = await dbfunc.fetchValue('emerald', 'misc', self.userid)
-        self.cobble = await dbfunc.fetchValue('cobble', 'misc', self.userid)
-        self.coal = await dbfunc.fetchValue('coal', 'misc', self.userid)
-        self.iron_ingot = await dbfunc.fetchValue('iron_ingot', 'misc', self.userid)
-        self.diamond = await dbfunc.fetchValue('diamond', 'misc', self.userid)
-        self.gold_ingot = await dbfunc.fetchValue('gold_ingot', 'misc', self.userid)
-        self.netherite_scrap = await dbfunc.fetchValue('netherite_scrap', 'misc', self.userid)
-        self.netherite_ingot = await dbfunc.fetchValue('netherite_ingot', 'misc', self.userid)
-        self.redstone = await dbfunc.fetchValue('redstone', 'misc', self.userid)
-        self.soul_sand = await dbfunc.fetchValue('soul_sand', 'misc', self.userid)
-        self.wood = await dbfunc.fetchValue('wood', 'misc', self.userid)
-        self.bed = await dbfunc.fetchValue('bed', 'misc', self.userid)
-        self.common_chest = await dbfunc.fetchValue('common_chest', 'misc', self.userid)
-        self.rare_chest = await dbfunc.fetchValue('rare_chest', 'misc', self.userid)
-        self.super_rare_chest = await dbfunc.fetchValue('super_rare_chest', 'misc', self.userid)
-        self.epic_chest = await dbfunc.fetchValue('epic_chest', 'misc', self.userid)
-        self.mythic_chest = await dbfunc.fetchValue('mythic_chest', 'misc', self.userid)
-        self.legendary_chest = await dbfunc.fetchValue('legendary_chest', 'misc', self.userid)
+async def Misc(ctx):
+    dbfunc = bot.database_handler
+    
+    userid = ctx.author.id
+    emerald = await dbfunc.fetchValue('emerald', 'misc', userid)
+    cobble = await dbfunc.fetchValue('cobble', 'misc', userid)
+    coal = await dbfunc.fetchValue('coal', 'misc', userid)
+    iron_ingot = await dbfunc.fetchValue('iron_ingot', 'misc', userid)
+    diamond = await dbfunc.fetchValue('diamond', 'misc', userid)
+    gold_ingot = await dbfunc.fetchValue('gold_ingot', 'misc', userid)
+    netherite_scrap = await dbfunc.fetchValue('netherite_scrap', 'misc', userid)
+    netherite_ingot = await dbfunc.fetchValue('netherite_ingot', 'misc', userid)
+    redstone = await dbfunc.fetchValue('redstone', 'misc', userid)
+    soul_sand = await dbfunc.fetchValue('soul_sand', 'misc', userid)
+    wood = await dbfunc.fetchValue('wood', 'misc', userid)
+    bed = await dbfunc.fetchValue('bed', 'misc', userid)
+    common_chest = await dbfunc.fetchValue('common_chest', 'misc', userid)
+    rare_chest = await dbfunc.fetchValue('rare_chest', 'misc', userid)
+    super_rare_chest = await dbfunc.fetchValue('super_rare_chest', 'misc', userid)
+    epic_chest = await dbfunc.fetchValue('epic_chest', 'misc', userid)
+    mythic_chest = await dbfunc.fetchValue('mythic_chest', 'misc', userid)
+    legendary_chest = await dbfunc.fetchValue('legendary_chest', 'misc', userid)

@@ -13,7 +13,7 @@ class Mine(commands.Cog):
     async def mine(self, ctx):
         try:
             misc = await Misc(ctx)
-            stats = await Stats.value(self, ctx)
+            stats = await Stats(ctx)
             e = My_emote(ctx)
             
             dbfunc = self.bot.database_handler
