@@ -1,3 +1,6 @@
+from discord.ext import commands
+import discord
+
 async def Stats(ctx):
     intents = discord.Intents.all()
     intents.members = True
