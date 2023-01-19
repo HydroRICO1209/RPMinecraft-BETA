@@ -1,4 +1,8 @@
 async def Misc(ctx):
+    intents = discord.Intents.all()
+    intents.members = True
+    prefixxx  = ['rpm ', 'Rpm ', 'RPM ', 'RPm ']
+    bot = commands.Bot(command_prefix = prefixxx, case_insensitive=True, activity=discord.Game(name="rpm start"),intents=intents)
     dbfunc = bot.database_handler
     
     userid = ctx.author.id
