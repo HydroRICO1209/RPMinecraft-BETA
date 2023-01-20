@@ -1,4 +1,4 @@
-async def Misc(ctx):
+async def Misc(bot, ctx):
     dbfunc = bot.database_handler
     
     userid = ctx.author.id
