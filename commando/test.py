@@ -11,7 +11,7 @@ class Test(commands.Cog):
     async def test1(self, ctx, *, arg):
         dbfunc = self.bot.database_handler
         stats = Stats(ctx)
-        await ctx.send(stats)
+        await ctx.send(stats.area)
             
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.user)
