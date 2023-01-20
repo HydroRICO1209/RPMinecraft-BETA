@@ -22,7 +22,7 @@ class Open(commands.Cog):
             
             if arg in ['c', 'common chest', 'common']:
                 lootlist = f'**{username}** opened a common chest and got:'
-                if misc.common_chest > 0: #have the chest
+                if misc['common_chest'] > 0: #have the chest
                     await dbfunc.updateIntValue('common_chest', 'misc', userid, -1)
                     common = ['pogchop', 'coal']
                     for loot in common:
