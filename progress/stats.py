@@ -11,4 +11,15 @@ async def Stats(ctx):
     maxxp = level * 200
     area = await dbfunc.fetchValue('area', 'stats', userid)
     
-    return hp, highest_area, atk, defend, xp, level, maxxp, area
+    stats = {
+        'hp': hp, 
+        'highest_area': highest_area, 
+        'atk': atk, 
+        'defend': defend, 
+        'xp': xp, 
+        'level': level, 
+        'maxxp': maxxp, 
+        'area': area        
+    }
+    
+    return stats

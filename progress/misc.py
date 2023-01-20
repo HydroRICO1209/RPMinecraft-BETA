@@ -21,4 +21,23 @@ async def Misc(ctx):
     mythic_chest = await dbfunc.fetchValue('mythic_chest', 'misc', userid)
     legendary_chest = await dbfunc.fetchValue('legendary_chest', 'misc', userid)
     
-    return emerald, cobble, coal, iron_ingot, diamond, gold_ingot, netherite_scrap, netherite_ingot, redstone, soul_sand, wood, bed, common_chest, rare_chest, super_rare_chest, epic_chest, mythic_chest, legendary_chest
+    misc = {
+        'emerald': emerald, 
+        'cobble': cobble, 
+        'coal': coal, 
+        'iron_ingot': iron_ingot, 
+        'diamond': diamond, 
+        'gold_ingot': gold_ingot, 
+        'netherite_scrap': netherite_scrap, 
+        'netherite_ingot': netherite_ingot,
+        'redstone': redstone, 
+        'soul_sand': soul_sand, 
+        'wood': wood, 
+        'bed': bed, 
+        'common_chest': common_chest, 
+        'rare_chest': rare_chest, 
+        'super_rare_chest':super_rare_chest, 
+        'epic_chest': epic_chest, 
+        'mythic_chest': mythic_chest, 
+        'legendary_chest': legendary_chest
+    }
