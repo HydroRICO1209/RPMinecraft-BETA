@@ -22,7 +22,7 @@ class Mine(commands.Cog):
             num1 = random.randint(0, 100)
             num2 = random.randint(0, 100)
     
-            if stats.area in [1, 2, 3]:
+            if stats['area'] in [1, 2, 3]:
                 if num1 <= 80: #80%
                     loottype = 'coal'
                     emotechosen = e.coal
@@ -30,7 +30,7 @@ class Mine(commands.Cog):
                     loottype = 'cobble'
                     emotechosen = e.cobble
             
-            elif stats.area in [4, 5, 6]:
+            elif stats['area'] in [4, 5, 6]:
                 if num1 <= 10: #10%
                     loottype = 'coal'
                     emotechosen = e.coal
@@ -41,7 +41,7 @@ class Mine(commands.Cog):
                     loottype = 'cobble'
                     emotechosen = e.cobble
 
-            elif stats.area in [7, 8]:
+            elif stats['area'] in [7, 8]:
                 if num1 <= 10: #10%
                     loottype = 'coal'
                     emotechosen = e.coal
@@ -55,7 +55,7 @@ class Mine(commands.Cog):
                     loottype = 'cobble'
                     emotechosen = e.cobble
     
-            elif stats.area in [9, 10, 11, 12]:
+            elif stats['area'] in [9, 10, 11, 12]:
                 if num1 <= 40: #40%
                     loottype = 'gold_ingot'
                     emotechosen = e.gold_ingot
@@ -66,7 +66,7 @@ class Mine(commands.Cog):
                     loottype = 'cobble'
                     emotechosen = e.cobble
     
-            elif stats.area in [13, 14]:
+            elif stats['area'] in [13, 14]:
                 if num1 <= 10: #10%
                     loottype = 'coal'
                     emotechosen = e.coal
