@@ -10,14 +10,14 @@ class Test(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def test1(self, ctx):
         dbfunc = self.bot.database_handler
-        stats = Stats(ctx)
+        stats = await Stats(ctx)
         await ctx.send(stats['area'])
             
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def test2(self, ctx, *, arg):
         dbfunc = self.bot.database_handler
-        stats = Stats(ctx)
+        stats = await Stats(ctx)
         await ctx.send(stats[arg])
             
 async def setup(bot):
