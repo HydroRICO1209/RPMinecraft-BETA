@@ -26,7 +26,7 @@ class Hunt(commands.Cog):
             loot = 'nothing'
             chesttype = None
     
-            if stats.area == 1:
+            if stats['area'] == 1:
                 mobxp = 5
                 if num1 <= 50:
                     mobselected = 'pig'
@@ -41,7 +41,7 @@ class Hunt(commands.Cog):
                     mobdef = 15
                     mobatk = 2
     
-            elif stats.area == 2:
+            elif stats['area'] == 2:
                 mobxp = 10
                 if num1 <= 50:
                     mobselected = 'pig'
@@ -56,7 +56,7 @@ class Hunt(commands.Cog):
                     mobdef = 50
                     mobatk = 10
     
-            elif stats.area == 3:
+            elif stats['area'] == 3:
                 mobxp = 15
                 if num1 <= 50:
                     mobselected = 'cow'
@@ -71,7 +71,7 @@ class Hunt(commands.Cog):
                     mobdef = 30
                     mobatk = 40
     
-            elif stats.area == 4:
+            elif stats['area'] == 4:
                 mobxp = 20
                 if num1 <= 50:
                     mobselected = 'cow'
@@ -86,7 +86,7 @@ class Hunt(commands.Cog):
                     mobdef = 37
                     mobatk = 45
     
-            elif stats.area == 5:
+            elif stats['area'] == 5:
                 mobxp = 25
                 if num1 <= 50:
                     mobselected = 'sheep'
@@ -101,7 +101,7 @@ class Hunt(commands.Cog):
                     mobdef = 53
                     mobatk = 60
     
-            elif stats.area == 6:
+            elif stats['area'] == 6:
                 mobxp = 30
                 if num1 <= 50:
                     mobselected = 'sheep'
@@ -116,7 +116,7 @@ class Hunt(commands.Cog):
                     mobdef = 200
                     mobatk = 73
     
-            elif stats.area == 7:
+            elif stats['area'] == 7:
                 mobxp = 35
                 if num1 <= 50:
                     mobselected = 'broke zombie villager'
@@ -131,7 +131,7 @@ class Hunt(commands.Cog):
                     mobdef = 120
                     mobatk = 130
 
-            elif stats.area == 8:
+            elif stats['area'] == 8:
                 mobxp = 40
                 if num1 <= 50:
                     mobselected = 'broke zombie villager'
@@ -146,7 +146,7 @@ class Hunt(commands.Cog):
                     mobdef = 130
                     mobatk = 175
             
-            elif stats.area == 9:
+            elif stats['area'] == 9:
                 mobxp = 45
                 if num1 <= 50:
                     mobselected = 'witherskeleton'
@@ -161,7 +161,7 @@ class Hunt(commands.Cog):
                     mobdef = 210
                     mobatk = 175
     
-            elif stats.area == 10:
+            elif stats['area'] == 10:
                 mobxp = 50
                 if num1 <= 50:
                     mobselected = 'witherskeleton'
@@ -176,7 +176,7 @@ class Hunt(commands.Cog):
                     mobdef = 210
                     mobatk = 190
                 
-            elif stats.area == 11:
+            elif stats['area'] == 11:
                 mobxp = 55
                 if num1 <= 50:
                     mobselected = 'ghast'
@@ -191,7 +191,7 @@ class Hunt(commands.Cog):
                     mobdef = 300
                     mobatk = 270
     
-            elif stats.area == 12:
+            elif stats['area'] == 12:
                 mobxp = 60
                 if num1 <= 50:
                     mobselected = 'ghast'
@@ -206,7 +206,7 @@ class Hunt(commands.Cog):
                     mobdef = 300
                     mobatk = 333
             
-            elif stats.area == 13:
+            elif stats['area'] == 13:
                 mobxp = 65
                 if num1 <= 50:
                     mobselected = 'enderman'
@@ -221,7 +221,7 @@ class Hunt(commands.Cog):
                     mobdef = 340
                     mobatk = 290
         
-            elif stats.area == 14:
+            elif stats['area'] == 14:
                 mobxp = 70
                 if num1 <= 50:
                     mobselected = 'enderman'
