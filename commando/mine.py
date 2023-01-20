@@ -18,7 +18,7 @@ class Mine(commands.Cog):
             
             dbfunc = self.bot.database_handler
             userid = ctx.author.id
-            username = ctx.author.id
+            username = ctx.author.name
             num1 = random.randint(0, 100)
             num2 = random.randint(0, 100)
     
