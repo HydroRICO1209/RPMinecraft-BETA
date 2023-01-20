@@ -1,5 +1,5 @@
-async def Misc(bot, ctx):
-    dbfunc = bot.database_handler
+async def Misc(ctx):
+    dbfunc = ctx.bot.database_handler
     
     userid = ctx.author.id
     emerald = await dbfunc.fetchValue('emerald', 'misc', userid)
