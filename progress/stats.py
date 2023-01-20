@@ -1,5 +1,5 @@
 async def Stats(bot, ctx):
-    dbfunc = self.bot.database_handler
+    dbfunc = bot.database_handler
 
     userid = ctx.author.id
     hp = await dbfunc.fetchValue('hp', 'stats', userid)
