@@ -1,4 +1,4 @@
-async def Stats(ctx):
+async def Stats(bot, ctx):
     dbfunc = self.bot.database_handler
 
     userid = ctx.author.id
