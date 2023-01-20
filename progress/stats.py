@@ -1,14 +1,5 @@
-from progress.database import Database
-from discord.ext import commands
-import discord
-    
 async def Stats(ctx):
-    intents = discord.Intents.all()
-    intents.members = True
-    prefixxx  = ['rpm ', 'Rpm ', 'RPM ', 'RPm ']
-    bot = commands.Bot(command_prefix = prefixxx, case_insensitive=True, activity=discord.Game(name="rpm start"),intents=intents)
-
-    dbfunc = Database(bot)
+    dbfunc = self.bot.database_handler
 
     userid = ctx.author.id
     hp = await dbfunc.fetchValue('hp', 'stats', userid)
