@@ -9,7 +9,7 @@ class Mine(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    @commands.cooldown(1, 20, commands.BucketType.euser)
+    @commands.cooldown(1, 20, commands.BucketType.user)
     async def mine(self, ctx):
         try:
             misc = await Misc(ctx)
