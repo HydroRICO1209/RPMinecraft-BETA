@@ -1,6 +1,6 @@
 from discord.ext import commands
 import discord
-import progress.database
+from progress.stats import *
 
 class Test(commands.Cog):
     def __init__(self, bot):
@@ -10,27 +10,14 @@ class Test(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def test1(self, ctx, *, arg):
         dbfunc = self.bot.database_handler
-        arglists = arg.split(" ")
-        arglen = len(arglists)
-        if arglen == 3:
-            #item, tablename, userid
-            value = await dbfunc.fetchValue(arglists[0], arglists[1], arglists[2])
-            await ctx.send(value)
-        else:
-            await ctx.send(f'arglen is only {arglen}, it should be 3 dumb')
+        stats = Stats(ctx)
+        await ctx.send(stats)
             
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.user)
     async def test2(self, ctx, *, arg):
         dbfunc = self.bot.database_handler
-        arglists = arg.split(" ")
-        arglen = len(arglists)
-        if arglen == 4:
-            #item, tablename, userid, newvalue
-            await dbfunc.setIntValue(arglists[0], arglists[1], arglists[2], arglists[3])
-            await ctx.send(f'{arglists[0]} is now {arglists[3]}')
-        else:
-            await ctx.send(f'arglen is only {arglen}, it should be 4 dumb')
+        
             
 async def setup(bot):
     await bot.add_cog(Test(bot))
