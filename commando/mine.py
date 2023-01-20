@@ -9,7 +9,7 @@ class Mine(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    @commands.cooldown(1, 20, commands.BucketType.user)
+    @commands.cooldown(1, 20, commands.BucketType.euser)
     async def mine(self, ctx):
         try:
             misc = await Misc(ctx)
@@ -25,63 +25,63 @@ class Mine(commands.Cog):
             if stats['area'] in [1, 2, 3]:
                 if num1 <= 80: #80%
                     loottype = 'coal'
-                    emotechosen = e.coal
+                    emotechosen = e.ecoal
                 elif num1 <= 100: #20%
                     loottype = 'cobble'
-                    emotechosen = e.cobble
+                    emotechosen = e.ecobble
             
             elif stats['area'] in [4, 5, 6]:
                 if num1 <= 10: #10%
                     loottype = 'coal'
-                    emotechosen = e.coal
+                    emotechosen = e.ecoal
                 elif num1 <= 80: #70%
                     loottype = 'iron_ingot'
-                    emotechosen = e.iron_ingot
+                    emotechosen = e.eiron_ingot
                 elif num1 <= 100: #20%
                     loottype = 'cobble'
-                    emotechosen = e.cobble
+                    emotechosen = e.ecobble
 
             elif stats['area'] in [7, 8]:
                 if num1 <= 10: #10%
                     loottype = 'coal'
-                    emotechosen = e.coal
+                    emotechosen = e.ecoal
                 elif num1 <= 30: #20%
                     loottype = 'iron_ingot'
-                    emotechosen = e.iron_ingot
+                    emotechosen = e.eiron_ingot
                 elif num1 <= 90: #60%
                     loottype = 'diamond'
-                    emotechosen = e.diamond
+                    emotechosen = e.ediamond
                 elif num1 <= 100: #10%
                     loottype = 'cobble'
-                    emotechosen = e.cobble
+                    emotechosen = e.ecobble
     
             elif stats['area'] in [9, 10, 11, 12]:
                 if num1 <= 40: #40%
                     loottype = 'gold_ingot'
-                    emotechosen = e.gold_ingot
+                    emotechosen = e.egold_ingot
                 elif num1 == 41: #1%
                     loottype = 'netherite_scrap'
-                    emotechosen = e.netherite_scrap
+                    emotechosen = e.enetherite_scrap
                 elif num1 <= 100: #59%
                     loottype = 'cobble'
-                    emotechosen = e.cobble
+                    emotechosen = e.ecobble
     
             elif stats['area'] in [13, 14]:
                 if num1 <= 10: #10%
                     loottype = 'coal'
-                    emotechosen = e.coal
+                    emotechosen = e.ecoal
                 elif num1 <= 20: #10%
                     loottype = 'iron_ingot'
-                    emotechosen = e.iron_ingot
+                    emotechosen = e.eiron_ingot
                 elif num1 <= 40: #20%
                     loottype = 'diamond'
-                    emotechosen = e.diamond
+                    emotechosen = e.ediamond
                 elif num1 <= 80: #40%
                     loottype = 'redstone'
-                    emotechosen = e.redstone
+                    emotechosen = e.eredstone
                 elif num1 <= 100: #20%
                     loottype = 'cobble'
-                    emotechosen = e.cobble
+                    emotechosen = e.ecobble
     
             if loottype == 'netherite_scrap':
                 if num2 <= 69: #69%
