@@ -309,7 +309,7 @@ class Hunt(commands.Cog):
             mobatktotal = mobdef / stats.atk
             damage = (mobatk - stats.defend) * round(mobatktotal)
             if damage < 0: damage = 0
-            newhp = stats.hp - damage
+            newhp = stats['hp'] - damage
             await dbfunc.setIntValue('hp', 'stats', userid, newhp)
     
             #chestdrop
@@ -339,7 +339,7 @@ class Hunt(commands.Cog):
     Lost {damage} HP, remaining HP is {newhp}/100
     Earned {mobxp} XP and got **{loot}**''')
                 newxp = mobxp + stats.xp
-                maxxp = stats.level * 200
+                maxxp = stats['level'] * 200
                 if newxp > maxxp: #upgradable
                     newxp = newxp - maxxp
                     await dbfunc.updateIntValue('level', 'stats', userid, 1)
@@ -349,7 +349,7 @@ class Hunt(commands.Cog):
                 else: 
                     await dbfunc.setIntValue('xp', 'stats', userid, newxp)
     
-                if chesttype is not None: #chest
+                if chesttype != None: #chest
                     await dbfunc.updateIntValue(chesttype, 'misc', userid, 1)
                     await ctx.send(f'**{username}** got 1 {chesttype} {echest}')
 

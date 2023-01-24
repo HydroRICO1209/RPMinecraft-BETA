@@ -13,17 +13,17 @@ class Profile(commands.Cog):
     async def profile(self, ctx): 
         try:
             stats = await Stats(ctx)
-            my_emote = My_emote(ctx)
+            e = My_emote(ctx)
             
             embed = discord.Embed(
                 description = f'''
     **PROGRESS**
-    **LEVEL**: **{stats.level}**({stats.xp}/{stats.maxxp})
-    **AREA**: **{stats.area}** (Max: **{stats.highestArea}**)
+    **LEVEL**: **{stats['level']}**({stats['xp']}/{stats['maxxp']})
+    **AREA**: **{stats['area']}** (Max: **{stats['highest_area']}**)
     **STATS**
-    {my_emote.earmorfull}**DEF**: {stats.defend}
-    <:iron_sword:917408207213821972>**ATK**: {stats.atk}
-    {my_emote.eheartfull}**HP**: {stats.hp}/100
+    {e.earmorfull}**DEF**: {stats['defend']}
+    <:iron_sword:917408207213821972>**ATK**: {stats['atk']}
+    {e.eheartfull}**HP**: {stats['hp']}/100
     ''', 
                 color = discord.Color.blue())
             embed.set_thumbnail(url = ctx.author.avatar_url)
