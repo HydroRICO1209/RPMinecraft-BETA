@@ -306,7 +306,7 @@ class Hunt(commands.Cog):
                     await dbfunc.updateIntValue('ender_pearl', 'mobdrop', userid, 10)
     
             #calculate damage
-            mobatktotal = mobdef / stats.atk
+            mobatktotal = mobdef / stats['atk']
             damage = (mobatk - stats.defend) * round(mobatktotal)
             if damage < 0: damage = 0
             newhp = stats['hp'] - damage
@@ -338,7 +338,7 @@ class Hunt(commands.Cog):
     **{username}** found and killed **{mobselected}**
     Lost {damage} HP, remaining HP is {newhp}/100
     Earned {mobxp} XP and got **{loot}**''')
-                newxp = mobxp + stats.xp
+                newxp = mobxp + stats['xp']
                 maxxp = stats['level'] * 200
                 if newxp > maxxp: #upgradable
                     newxp = newxp - maxxp
