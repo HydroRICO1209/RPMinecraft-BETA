@@ -79,7 +79,7 @@ class Open(commands.Cog):
 
             elif arg in ['r', 'rare chest']:
                 lootlist = f'**{username}** opened a rare chest and got:'
-                if misc.rare_chest > 0: #have the chest
+                if misc['rare_chest'] > 0: #have the chest
                     await dbfunc.updateIntValue('rare_chest', 'misc', userid, -1)
                     common = ['pogchop', 'beef', 'wool', 'coal']
                     for loot in common:
@@ -125,7 +125,7 @@ class Open(commands.Cog):
                     
             elif arg in ['s',  'super rare chest']:
                 lootlist = f'**{username}** opened a super rare chest and got:'
-                if misc.super_rare_chest > 0: #have the chest
+                if misc['super_rare_chest'] > 0: #have the chest
                     await dbfunc.updateIntValue('super_rare_chest', 'misc', userid, -1)
                     common = ['pogchop', 'beef', 'wool', 'coal', 'iron_ingot']
                     for loot in common:
@@ -171,7 +171,7 @@ class Open(commands.Cog):
             
             elif arg in ['e', 'epic chest']:
                 lootlist = f'**{username}** opened an epic chest and got:'
-                if misc.epic_chest > 0: #have the chest
+                if misc['epic_chest'] > 0: #have the chest
                     await dbfunc.updateIntValue('epic_chest', 'misc', userid, -1)
 
                     common = ['beef', 'wool', 'coal', 'iron_ingot', 'diamond']
@@ -227,7 +227,7 @@ class Open(commands.Cog):
                     await ctx.send(f'**{username}**, check your inventory maybe???')
                     
             elif arg in ['m', 'mythic chest']:
-                if misc.mythic_chest > 0: #have the chest
+                if misc['mythic_chest'] > 0: #have the chest
                     lootlist = f'**{username}** opened a mythic chest and got:'
                     await dbfunc.updateIntValue('mythic_chest', 'misc', userid, -1)
                     common = ['beef', 'wool', 'blaze_rod', 'diamond']
@@ -289,7 +289,7 @@ class Open(commands.Cog):
                     
             elif arg in ['l', 'legendary chest']:
                 lootlist = f'**{username}** opened a legendary chest and got:'
-                if misc.legendary_chest > 0: #have the chest
+                if misc['legendary_chest'] > 0: #have the chest
                     await dbfunc.updateIntValue('legendary_chest', 'misc', userid, -1)
                     mobdrop = ['pogchop', 'beef', 'wool', 'map_scrap', 'wither_skull', 'blaze_rod', 'ender_pearl'] #3 random mobdrop x20
                     for _ in range(3):
