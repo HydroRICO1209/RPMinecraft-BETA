@@ -17,65 +17,65 @@ class Boss(commands.Cog):
             username = ctx.author.name
 
             
-            if higherArea > area:
+            if stats['highest_area'] > stats['area']:
                 await ctx.send('This area doesnt have any boss anymore')
             elif highestArea is area:
-                if area == 1:
+                if stats['area'] == 1:
                     bossName = 'The Mutated Poggy'
                     mobdef = 50
                     mobatk = 15
                     newArea = 2
-                elif area == 2:
+                elif stats['area'] == 2:
                     bossName = 'Giant Zompiggy'
                     mobdef = 100
                     mobatk = 25
                     newArea = 3
-                elif area == 3:
+                elif stats['area'] == 3:
                     bossName = 'WOC ehT , enobrenniD'
                     mobdef = 200
                     mobatk = 35
                     newArea = 4
-                elif area == 4:
+                elif stats['area'] == 4:
                     bossName = 'GIANT SPIDER'
                     mobdef = 500
                     mobatk = 45
                     newArea = 5
-                elif area == 5:
+                elif stats['area'] == 5:
                     bossName = 'Wooly Skeleton'
                     mobdef = 800
                     mobatk = 56
                     newArea = 6
-                elif area == 6:
+                elif stats['area'] == 6:
                     bossName = 'Skeleton KING'
                     mobdef = 1000
                     mobatk = 70
                     newArea = 7
-                elif area == 7:
+                elif stats['area'] == 7:
                     bossName = 'Johnny, THE RAIDER'
                     mobdef = 1500
                     mobatk = 135
                     newArea = 8
-                elif area == 8:
+                elif stats['area'] == 8:
                     bossName = 'Elder Guardian'
                     mobdef = 2000
                     mobatk = 300
                     newArea = 8
-                elif area == 9:
+                elif stats['area'] == 9:
                     bossName = 'Cheezy Blaze'
                     mobdef = 2000
                     mobatk = 145
                     newArea = 10
-                elif area == 10:
+                elif stats['area'] == 10:
                     bossName = 'GIANT MAGMA CUBE'
                     mobdef = 2300
                     mobatk = 175
                     newArea = 11
-                elif area == 11:
+                elif stats['area'] == 11:
                     bossName = 'small wither'
                     mobdef = 2500
                     mobatk = 200
                     newArea = 12
-                elif area == 13:
+                elif stats['area'] == 13:
                     bossName = 'Silvered Enderman'
                     mobdef = 2800
                     mobatk = 380
@@ -84,7 +84,7 @@ class Boss(commands.Cog):
                 mobatktotal = round(mobdef / atk)
                 damage = (mobatk - defend) * mobatktotal
                 if damage < 0: damage = 0
-                newhp = stats.hp - damage
+                newhp = stats['hp'] - damage
                 
                 if newhp > 0:
                     await dbfunc.setIntValue('hp', 'stats', userid, newhp)
@@ -100,7 +100,7 @@ class Boss(commands.Cog):
 ''')
                 else:
                     await dbfunc.setIntValue('hp', 'stats', userid, 100)
-                    if stats.level > 1:
+                    if stats['level'] > 1:
                         await dbfunc.updateIntValue('level', 'stats', userid, -1)
                     await dbfunc.setIntValue('xp', 'stats', userid, 0)
                     await ctx.send(f'''
