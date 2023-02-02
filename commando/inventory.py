@@ -1,6 +1,6 @@
 from discord.ext import commands
 import discord
-from progress.itemlist import *
+from progress import itemlist
 from progress.my_emote import *
 
 class MyCog(commands.Cog):
@@ -18,7 +18,7 @@ class MyCog(commands.Cog):
             
             #mobdrop
             mobdrop_str = ''
-            for mobdrop in itemlist.mobdrop_list:
+            for mobdrop in itemlist['mobdrop_list']:
                 e = discord.utils.get(self.bot.emojis, name = mobdrop)
                 value = await dbfunc.fetchValue(mobdrop, 'mobdrop', userid)
                 if value != 0:
@@ -26,7 +26,7 @@ class MyCog(commands.Cog):
 
             #misc
             misc_str = ''
-            for misc in misc_list:
+            for misc in itemlist['misc_list']:
                 e = discord.utils.get(self.bot.emojis, name = misc)
                 value = await dbfunc.fetchValue(misc, 'misc', userid)
                 if value != 0:
@@ -34,7 +34,7 @@ class MyCog(commands.Cog):
 
             #farm
             farm_str = ''
-            for farm in farm_list:
+            for farm in itemlist['farm_list']:
                 e = discord.utils.get(self.bot.emojis, name = farm)
                 value = await dbfunc.fetchValue(farm, 'farm', userid)
                 if value != 0:
@@ -42,7 +42,7 @@ class MyCog(commands.Cog):
                     
             #illegal
             illegal_str = ''
-            for illegal in illegal_list:
+            for illegal in itemlist['illegal_list']:
                 e = discord.utils.get(self.bot.emojis, name = items)
                 value = await dbfunc.fetchValue(illegal, 'illegal', userid)
                 if value != 0:
@@ -50,7 +50,7 @@ class MyCog(commands.Cog):
 
             #armors & sword
             armors_str = ''
-            for armor in armors:
+            for armor in itemlist['armors']:
                 value = await dbfunc.fetchValue(armors, 'armor', userid)
         
                 if value == 0:
