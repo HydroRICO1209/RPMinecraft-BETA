@@ -25,24 +25,24 @@ class Craft(commands.Cog):
             if arg == '1':
                 embed = discord.Embed(
                     description= f'''
-    {e.ph} `pog helmet` ↦ 50 {e.pogchop} + 50 {e.coal}
-    {e.pc} `pog chestplate` ↦ 80 {e.pogchop} + 80 {e.coal}
-    {e.pl} `pog leggings` ↦ 70 {e.pogchop} + 70 {e.coal}
-    {e.pb} `pog boots` ↦ 40 {e.pogchop} + 40 {e.coal}
-    {e.ps} `pog sword` ↦ 20 {e.pogchop} + 20 {e.coal}
-    {e.bs} `beefy sword` ↦ 20 {e.beef}
+    {e.eph} `pog helmet` ↦ 50 {e.epogchop} + 50 {e.ecoal}
+    {e.epc} `pog chestplate` ↦ 80 {e.epogchop} + 80 {e.ecoal}
+    {e.epl} `pog leggings` ↦ 70 {e.epogchop} + 70 {e.ecoal}
+    {e.epb} `pog boots` ↦ 40 {e.epogchop} + 40 {e.ecoal}
+    {e.eps} `pog sword` ↦ 20 {e.epogchop} + 20 {e.ecoal}
+    {e.ebs} `beefy sword` ↦ 20 {e.ebeef}
     
-    {e.ih} `iron helmet` ↦ 50 {e.iron_ingot}
-    {e.ic} `iron chestplate` ↦ 80 {e.iron_ingot}
-    {e.il} `iron leggings` ↦ 70 {e.iron_ingot}
-    {e.ib} `iron boots` ↦ 40 {e.iron_ingot}
-    {e.iis} `iron sword` ↦ 20 {e.iron_ingot}
+    {e.eih} `iron helmet` ↦ 50 {e.eiron_ingot}
+    {e.eic} `iron chestplate` ↦ 80 {e.eiron_ingot}
+    {e.eil} `iron leggings` ↦ 70 {e.eiron_ingot}
+    {e.eib} `iron boots` ↦ 40 {e.eiron_ingot}
+    {e.eis} `iron sword` ↦ 20 {e.eiron_ingot}
     
-    {e.dh} `diamond helmet` ↦ 50 {e.diamond}
-    {e.dc} `diamond chestplate` ↦ 80 {e.diamond}
-    {e.dl} `diamond leggings` ↦ 70 {e.diamond}
-    {e.db} `diamond boots` ↦  40 {e.diamond}
-    {e.ds} `diamond sword` ↦ 20 {e.diamond}
+    {e.edh} `diamond helmet` ↦ 50 {e.ediamond}
+    {e.edc} `diamond chestplate` ↦ 80 {e.ediamond}
+    {e.edl} `diamond leggings` ↦ 70 {e.ediamond}
+    {e.edb} `diamond boots` ↦  40 {e.ediamond}
+    {e.eds} `diamond sword` ↦ 20 {e.ediamond}
 ''',
                     color = discord.Color.blue())
                 embed.set_author(name= 'Recipes(Page 1)',
@@ -53,29 +53,29 @@ class Craft(commands.Cog):
             elif arg == '2':
                 embed = discord.Embed(
                     description= f'''
-    {e.mwdh} `meaty wooly diamond helmet` ↦ 1 {e.dh} + 50 {e.pogchop} + 50 {e.beef} + 50 {e.wool}
-    {e.mwdc} `meaty wooly diamond chestplate` ↦ 1 {e.dc} + 80 {e.pogchop} + 80 {e.beef} + 80 {e.wool}
-    {e.mwdl} `meaty wooly diamond leggings` ↦ 1 {e.dl} + 70 {e.pogchop} + 70 {e.beef} + 70 {e.wool}
-    {e.mwdb} `meaty wooly diamond boots` ↦ 1 {e.db} + 40 {e.pogchop} + 40 {e.beef} + 40 {e.wool}
-    {e.mwds} `meaty wooly diamond sword` ↦ 1 {e.ds} + 20 {e.pogchop} + 20 {e.beef} + 20 {e.wool}
+    {e.emwdh} `meaty wooly diamond helmet` ↦ 1 {e.edh} + 50 {e.epogchop} + 50 {e.ebeef} + 50 {e.ewool}
+    {e.emwdc} `meaty wooly diamond chestplate` ↦ 1 {e.edc} + 80 {e.epogchop} + 80 {e.ebeef} + 80 {e.ewool}
+    {e.emwdl} `meaty wooly diamond leggings` ↦ 1 {e.edl} + 70 {e.epogchop} + 70 {e.ebeef} + 70 {e.ewool}
+    {e.emwdb} `meaty wooly diamond boots` ↦ 1 {e.edb} + 40 {e.epogchop} + 40 {e.ebeef} + 40 {e.ewool}
+    {e.emwds} `meaty wooly diamond sword` ↦ 1 {e.eds} + 20 {e.epogchop} + 20 {e.ebeef} + 20 {e.ewool}
     
-    {e.smwdh} `shiny meaty wooly diamond helmet` ↦ 1 {e.mwdh} 50 + {e.gold_ingot}
-    {e.smwdc} `shiny meaty wooly diamond chestplate` ↦ 1 {e.mwdc} +  80 {e.gold_ingot}
-    {e.smwdl} `shiny meaty wooly diamond leggings` ↦ 1 {e.mwdl} + 70 {e.gold_ingot}
-    {e.smwdb} `shiny meaty wooly diamond boots` ↦ 1 {e.mwdb} + 40 {e.gold_ingot}
-    {e.smwds} `shiny meaty wooly diamond sword` ↦ 1 {e.mwds} + 20 {e.gold_ingot}
+    {e.esmwdh} `shiny meaty wooly diamond helmet` ↦ 1 {e.emwdh} 50 + {e.egold_ingot}
+    {e.esmwdc} `shiny meaty wooly diamond chestplate` ↦ 1 {e.emwdc} +  80 {e.egold_ingot}
+    {e.esmwdl} `shiny meaty wooly diamond leggings` ↦ 1 {e.emwdl} + 70 {e.egold_ingot}
+    {e.esmwdb} `shiny meaty wooly diamond boots` ↦ 1 {e.emwdb} + 40 {e.egold_ingot}
+    {e.esmwds} `shiny meaty wooly diamond sword` ↦ 1 {e.emwds} + 20 {e.egold_ingot}
     
-    {e.smwnh} `shiny meaty wooly netherite helmet` ↦ 1 {e.smwdh} + 1 {e.netherite_ingot}
-    {e.smwnc} `shiny meaty wooly netherite chestplate` ↦ 1 {e.smwdc} + 1 {e.netherite_ingot}
-    {e.smwnl} `shiny meaty wooly netherite leggings` ↦ 1 {e.smwdl} + 1 {e.netherite_ingot}
-    {e.smwnb} `shiny meaty wooly netherite boots` ↦ 1 {e.smwdb} + 1 {e.netherite_ingot}
-    {e.smwns} `shiny meaty wooly netherite sword` ↦ 1 {e.smwds} + 1 {e.netherite_ingot}
+    {e.esmwnh} `shiny meaty wooly netherite helmet` ↦ 1 {e.esmwdh} + 1 {e.enetherite_ingot}
+    {e.esmwnc} `shiny meaty wooly netherite chestplate` ↦ 1 {e.esmwdc} + 1 {e.enetherite_ingot}
+    {e.esmwnl} `shiny meaty wooly netherite leggings` ↦ 1 {e.esmwdl} + 1 {e.enetherite_ingot}
+    {e.esmwnb} `shiny meaty wooly netherite boots` ↦ 1 {e.esmwdb} + 1 {e.enetherite_ingot}
+    {e.esmwns} `shiny meaty wooly netherite sword` ↦ 1 {e.esmwds} + 1 {e.enetherite_ingot}
     
-    {e.msmwnh} `more shiny meaty wooly netherite helmet` ↦ 1 {e.smwnh} + 50 {e.redstone}
-    {e.msmwnc} `more shiny meaty wooly netherite chestplate` ↦ 1 {e.smwnc} + 80 {e.redstone}
-    {e.msmwnl} `more shiny meaty wooly netherite leggings` ↦ 1 {e.smwnl} + 70 {e.redstone}
-    {e.msmwnb} `more shiny meaty wooly netherite boots` ↦ 1 {e.smwnb} + 40 {e.redstone}
-    {e.msmwns} `more shiny meaty wooly netherite sword` ↦ 1 {e.smwns} + 20 {e.redstone}
+    {e.emsmwnh} `more shiny meaty wooly netherite helmet` ↦ 1 {e.esmwnh} + 50 {e.eredstone}
+    {e.emsmwnc} `more shiny meaty wooly netherite chestplate` ↦ 1 {e.esmwnc} + 80 {e.eredstone}
+    {e.emsmwnl} `more shiny meaty wooly netherite leggings` ↦ 1 {e.esmwnl} + 70 {e.eredstone}
+    {e.emsmwnb} `more shiny meaty wooly netherite boots` ↦ 1 {e.esmwnb} + 40 {e.eredstone}
+    {e.emsmwns} `more shiny meaty wooly netherite sword` ↦ 1 {e.esmwns} + 20 {e.eredstone}
 ''',
                     color = discord.Color.blue())
                 embed.set_author(name= 'Recipes(Page 2)',
@@ -86,12 +86,12 @@ class Craft(commands.Cog):
             elif arg == '3':
                 embed = discord.Embed(
                     description= f'''
-    {e.cooked_pogchop} `cooked_pogchop` ↦ 8 {e.pogchop} + 1 {e.coal}
-    {e.steak} `steak` ↦ 8 {e.beef} + 1 {e.coal}
-    {e.bed} `bed` ↦ 3 {e.wood} + 3 {e.wool}
-    {e.blaze_powder} `blaze_powder`x2 ↦ 1 {e.blaze_rod}
-    {e.map} `map` ↦ 5 {e.map_scrap}
-    {e.eoe} `eye_of_ender` ↦ 1 {e.ender_pearl} + 1 {e.blaze_powder}
+    {e.ecooked_pogchop} `cooked_pogchop` ↦ 8 {e.epogchop} + 1 {e.ecoal}
+    {e.esteak} `steak` ↦ 8 {e.ebeef} + 1 {e.ecoal}
+    {e.ebed} `bed` ↦ 3 {e.ewood} + 3 {e.ewool}
+    {e.eblaze_powder} `blaze_powder`x2 ↦ 1 {e.eblaze_rod}
+    {e.emap} `map` ↦ 5 {e.emap_scrap}
+    {e.eeoe} `eye_of_ender` ↦ 1 {e.eender_pearl} + 1 {e.eblaze_powder}
 ''',
                     color = discord.Color.blue())
                 embed.set_author(name= 'Recipes(Page 3)',
