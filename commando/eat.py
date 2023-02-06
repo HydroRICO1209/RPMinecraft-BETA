@@ -17,11 +17,11 @@ class Eat(commands.Cog):
             userid = ctx.author.id  
             username = ctx.author.name
 
-            if stats.hp >= 100:
+            if stats['hp'] >= 100:
                 await ctx.send(f'**{username}**, you want me to force feed you?')
             else:
                 if arg == 'pogchop': #5hp
-                    if mobdrop.pogchop == 0:
+                    if mobdrop['pogchop'] == 0:
                         await ctx.send(f'**{username}**, you dont have a pogchop')
                     else:
                         await dbfunc.updateIntValue('pogchop', 'mobdrop', userid, -1)
@@ -29,7 +29,7 @@ class Eat(commands.Cog):
                         await ctx.send(f'**{username}** ate a pogchop and regen **5HP**')
 
                 elif arg == 'cooked_pogchop': #15hp
-                    if mobdrop.cooked_pogchop == 0: 
+                    if mobdrop['cooked_pogchop'] == 0: 
                         await ctx.send(f'**{username}**, you dont have a cooked_pogchop')
                     else:
                         await dbfunc.updateIntValue('cooked_pogchop', 'mobdrop', userid, -1)
@@ -37,7 +37,7 @@ class Eat(commands.Cog):
                         await ctx.send(f'**{username}** ate a cooked_pogchop and regen **15HP**')
                         
                 elif arg == 'beef': #20hp
-                    if mobdrop.beef == 0:
+                    if mobdrop['beef'] == 0:
                         await ctx.send(f'**{username}**,you dont have a beef')
                     else:
                         await dbfunc.updateIntValue('beef', 'mobdrop', userid, -1)
@@ -45,7 +45,7 @@ class Eat(commands.Cog):
                         await ctx.send(f'**{username}** ate a beef and regen **20HP**')
                 
                 elif arg == 'steak': #40hp
-                    if mobdrop.steak == 0:
+                    if mobdrop['steak'] == 0:
                         await ctx.send(f'**{username}**,you dont have a steak')
                     else:
                         await dbfunc.updateIntValue('steak', 'mobdrop', userid, -1)
