@@ -43,10 +43,10 @@ class MyCog(commands.Cog):
             #illegal
             illegal_str = ''
             for illegal in illegal_list:
-                e = discord.utils.get(self.bot.emojis, name = items)
+                e = discord.utils.get(self.bot.emojis, name = illegal)
                 value = await dbfunc.fetchValue(illegal, 'illegal', userid)
                 if value != 0:
-                    illegal_str += f"{e}{items}: {value}\n"
+                    illegal_str += f"{e}{illegal}: {value}\n"
 
             #armors & sword
             armors_str = ''
