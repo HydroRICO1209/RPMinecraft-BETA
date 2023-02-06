@@ -307,7 +307,7 @@ class Hunt(commands.Cog):
     
             #calculate damage
             mobatktotal = mobdef / stats['atk']
-            damage = (mobatk - stats.defend) * round(mobatktotal)
+            damage = (mobatk - stats['defend']) * round(mobatktotal)
             if damage < 0: damage = 0
             newhp = stats['hp'] - damage
             await dbfunc.setIntValue('hp', 'stats', userid, newhp)
