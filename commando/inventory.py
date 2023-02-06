@@ -50,8 +50,8 @@ class MyCog(commands.Cog):
 
             #armors & sword
             armors_str = ''
-            for armor in armors_list['armors']:
-                value = await dbfunc.fetchValue(armors, 'armor', userid)
+            for armor in armors_list:
+                value = await dbfunc.fetchValue(armor, 'armors', userid)
         
                 if value == 0:
                     armors_str += f'No {armor}\n'
