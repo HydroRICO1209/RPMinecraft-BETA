@@ -1,6 +1,6 @@
 from discord.ext import commands
 import discord
-from progress import itemlist
+from progress.itemlist import *
 from progress.my_emote import *
 
 class MyCog(commands.Cog):
@@ -15,6 +15,10 @@ class MyCog(commands.Cog):
             dbfunc = self.bot.database_handler
             userid = ctx.author.id
             username = ctx.author.name
+            mobdrop_list = itemlist.mobdrop_list
+            misc_list = itemlist.misc_list
+            farm_list = itemlist.farm_list
+            illegal_list = itemlist.illegal_list
             
             #mobdrop
             mobdrop_str = ''
