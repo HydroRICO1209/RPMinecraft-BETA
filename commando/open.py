@@ -326,9 +326,9 @@ class Open(commands.Cog):
                     await ctx.send(lootlist)
 
                 else:
-                    await ctx.send(f'**{username}**, check your inventory maybe???')
+                    await ctx.send(f"**{username}**, the only chest you have is yaw chern's father chest")
             else:
-                await ctx.send(f'**{username}**, what are u even trying to open =.=')
+                await ctx.send(f'**{username}**, correct syntax to open common chest -> `rpm open common/c`')
         
         except KeyError: #error handler
             await ctx.send(f'**{username}**, your account is either not created yet or not at the latest version. Try using `rpm start')
