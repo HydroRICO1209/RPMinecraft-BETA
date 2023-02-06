@@ -1,6 +1,6 @@
 from discord.ext import commands
 import discord
-from progress.itemlist import mobdrop_list, misc_list, farm_list, illegal_list
+from progress.itemlist import mobdrop_list, misc_list, farm_list, illegal_list, armors_list
 from progress.my_emote import *
 
 class MyCog(commands.Cog):
