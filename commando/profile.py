@@ -26,9 +26,9 @@ class Profile(commands.Cog):
     {e.eheartfull}**HP**: {stats['hp']}/100
     ''', 
                 color = discord.Color.blue())
-            embed.set_thumbnail(url = ctx.author.avatar_url)
+            embed.set_thumbnail(url = ctx.author.avatar.url)
             embed.set_author(name= f"{ctx.author.display_name}'s profile", 
-            icon_url = ctx.author.avatar_url)
+            icon_url = ctx.author.avatar.url)
             await ctx.send(embed=embed)
         except KeyError: #error handler
             await ctx.send(f'**{ctx.author.name}**, your account is either not created yet or not at the latest version. Try using `rpm start`')

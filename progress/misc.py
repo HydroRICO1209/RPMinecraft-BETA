@@ -41,3 +41,5 @@ async def Misc(ctx):
         'mythic_chest': mythic_chest,
         'legendary_chest': legendary_chest
     }
+    
+    return misc
