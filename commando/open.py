@@ -31,7 +31,7 @@ class Open(commands.Cog):
                         num3 = random.randint(0, 1000)
                         
                         if num1 <= 80: #80% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if num2 <= 70: #70%
                                 lootnum = 1
                             elif num2 <= 90: #20%
@@ -51,7 +51,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         num2 = random.randint(0, 100)
                         if num1 <= 50: #50% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if num2 <= 70: #70%
                                 lootnum = 1
                             elif num2 <= 90: #20%
@@ -69,7 +69,7 @@ class Open(commands.Cog):
                     super_rare = ['legendary_chest']
                     for loot in super_rare:
                         if num3 == 69: #1% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             await dbfunc.updateIntValue(loot, 'misc', userid, 1)
                             lootlist += f'\n{my_emote}{loot} x1'
 
@@ -86,7 +86,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         num2 = random.randint(0, 100)
                         if num1 <= 80: #80% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if num2 <= 70: #70%
                                 lootnum = 3
                             elif num2 <= 90: #20%
@@ -106,7 +106,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         num2 = random.randint(0, 100)
                         if num1 <= 50: #80% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if loot == 'common_chest':
                                 lootnum = 1
                             else:
@@ -132,7 +132,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         num2 = random.randint(0, 100)
                         if num1 <= 50: #80% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if num2 <= 70: #70%
                                 lootnum = 5
                             elif num2 <= 90: #20%
@@ -152,7 +152,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         num2 = random.randint(0, 100)
                         if num1 <= 50: #80% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if loot == 'rare_chest':
                                 lootnum = 1
                             else:
@@ -179,7 +179,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         num2 = random.randint(0, 100)
                         if num1 <= 50: #80% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if num2 <= 70: #70%
                                 lootnum = 6
                             elif num2 <= 90: #20%
@@ -199,7 +199,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         num2 = random.randint(0, 100)
                         if num1 <= 50: #80% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if num2 <= 70: #70%
                                 lootnum = 5
                             elif num2 <= 90: #20%
@@ -218,7 +218,7 @@ class Open(commands.Cog):
                     for loot in super_rare:
                         num1 = random.randint(0, 100)
                         if num1 <= 10: #10% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             await dbfunc.updateIntValue(loot, 'mobdrop', userid, 1)
                             lootlist += f'\n{my_emote}{loot} x{lootnum}'
                     await ctx.send(lootlist)
@@ -235,7 +235,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         num2 = random.randint(0, 100)
                         if num1 <= 50: #80% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if num2 <= 80: #80%
                                 lootnum = 10
                             elif num2 <= 95: #15%
@@ -255,7 +255,7 @@ class Open(commands.Cog):
                         num1 = random.randint(0, 100)
                         num2 = random.randint(0, 100)
                         if num1 <= 50: #80% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             if num2 <= 70: #70%
                                 lootnum = 6
                             elif num2 <= 90: #20%
@@ -274,7 +274,7 @@ class Open(commands.Cog):
                     for loot in super_rare:
                         num1 = random.randint(0, 100)
                         if num1 <= 20: #20% drop rate
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             
                             if loot in mobdrop_list:
                                 await dbfunc.updateIntValue(loot, 'mobdrop', userid, 1)
@@ -295,7 +295,7 @@ class Open(commands.Cog):
                     for _ in range(3):
                         num1 = random.randint(0, 6)
                         loot = mobdrop[num1]
-                        my_emote = discord.utils.get(bot.emojis, name = loot)
+                        my_emote = discord.utils.get(self.bot.emojis, name = loot)
                         if loot in ['map_scrap', 'wither_skull', 'ender_pearl']:
                             await dbfunc.updateIntValue(loot, 'mobdrop', userid, 2)
                             lootlist += f'\n{my_emote}{loot} x2'
@@ -307,7 +307,7 @@ class Open(commands.Cog):
                     for _ in range(3):
                         num1 = random.randint(0, 6)
                         loot = ore[num1]
-                        my_emote = discord.utils.get(bot.emojis, name = loot)
+                        my_emote = discord.utils.get(self.bot.emojis, name = loot)
                         if loot in ['netherite_scrap', 'soul_sand']:
                             await dbfunc.updateIntValue(loot, 'misc', userid, 2)
                             lootlist += f'\n{my_emote}{loot} x2'
@@ -319,7 +319,7 @@ class Open(commands.Cog):
                     for loot in rare:
                         num1 = random.randint(0, 100)
                         if num1 <= 69: #69%
-                            my_emote = discord.utils.get(bot.emojis, name = loot)
+                            my_emote = discord.utils.get(self.bot.emojis, name = loot)
                             await dbfunc.updateIntValue('legendary_chest', 'misc', userid, 1)
                             lootlist += f'\n{my_emote}{loot} x1'
 
