@@ -81,8 +81,8 @@ class Boss(commands.Cog):
                     mobatk = 380
                     newArea = 14
                 
-                mobatktotal = round(mobdef / atk)
-                damage = (mobatk - defend) * mobatktotal
+                mobatktotal = round(mobdef / stats['atk'])
+                damage = (mobatk - stats['defend']) * mobatktotal
                 if damage < 0: damage = 0
                 newhp = stats['hp'] - damage
                 
