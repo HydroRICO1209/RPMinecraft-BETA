@@ -19,7 +19,7 @@ class Boss(commands.Cog):
             
             if stats['highest_area'] > stats['area']:
                 await ctx.send('This area doesnt have any boss anymore')
-            elif highest_area == area:
+            elif stats['highest_area'] == stats['area']:
                 if stats['area'] == 1:
                     bossName = 'The Mutated Poggy'
                     mobdef = 50
